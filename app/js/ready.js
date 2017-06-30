@@ -1,5 +1,17 @@
 $("document").ready(function(){
 
+        //getProfile(ProfileID);
+        var userProfileID = ("getProfile: ", $(".getProfile").attr('id'));
+
+        //Si estamos en el perfil, lo mandamos llamar
+        if(userProfileID){
+                getProfile(userProfileID);
+                $("header").hide();
+                
+        }
+        
+
+
         //Verificamos si el usuario está conectado
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
@@ -16,14 +28,19 @@ $("document").ready(function(){
                 $(".userName").html(name);
                 //Foto de perfil del usuario 
                 $(".userPP").attr("src", photoUrl);
+                $(".userPP").attr("alt", name);
                 //Email del usuario
                 $(".userEmail").html(email);
                 //ID del usuario
                 $(".userID").html(uid);
 
+                //link al perfil de usuario
+                $(".linkMyProfile").attr("href", "profile.php?id="+uid);
+
                 $(".headerUser").css("display" ,"flex");
                 $(".headerNoUser").css("display", "none");
                 
+                //Mostramos el botòn para crear publicación
                 $(".cta-post").css("display", "block");
 
                 //Feed del usuario
@@ -53,15 +70,6 @@ $("document").ready(function(){
                         uploadPhoto(uid);
                 });
 
-
-                /*
-                //Mandamos llamar a la funciòn para dar like
-                $(".like-action").click(function() {            
-                        //var post_id = $(this).closest( ".post").attr("id");
-                        //like(uid,post_id);
-                        alert(this);
-                });
-                */
                 
                 $(document).on('click', '.like-action', function() { 
                         var post_id = $(this).closest( ".post").attr("id");
@@ -89,6 +97,9 @@ $("document").ready(function(){
 	  }
 
 	});
+
+
+
 
 	
 });

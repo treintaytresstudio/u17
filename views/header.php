@@ -26,7 +26,7 @@
            <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
         </svg>
     </div>
-    
+
     <!-- BG Actions -->
     <div class="bg-actions"></div>
 
@@ -39,7 +39,7 @@
         <nav>
             <ul>
                 <li> 
-                    <a>
+                    <a href="index.php">
                         <i class="material-icons">home</i>
                     </a> 
                 </li>
@@ -54,7 +54,7 @@
                     </a> 
                 </li>
                 <li class="header-user"> 
-                    <a>
+                    <a class="linkMyProfile" id="goProfile" href="profile.php">
                         <img class="avatar userPP" src="" alt="">
                         <span class="userName"></span>
                     </a> 
@@ -64,7 +64,7 @@
         </nav>
     </header>
     
-    <!-- si el usuario, no está logueado -->
+    <!-- si el usuario, no está logueado 
     <header class="headerNoUser">
         <div class="logo">
             <h1>Ultra</h1>
@@ -78,61 +78,3 @@
         </nav>
     </header>
     <!-- /headers -->
-    
-    <!-- feed main -->
-    <div class="container c-top">
-        <div class="row">
-            <div class="col-xs-12 col-md-12 col-lg-3 col-xl-3">
-            </div>
-            
-            <!-- feed container -->
-            <div class="col-xs-12 col-md-12 col-lg-6 col-xl-6" id="posts"></div>
-            
-            </div>
-            <!-- /feed container -->
-            
-            <div class="col-xs-12 col-md-12 col-lg-3 col-xl-3"></div>
-            </div>
-        </div>
-    </div>
-    <!-- /feed main -->
-
-    <!-- formulario para crear un nuevo post -->
-    <div class="post-form" id="post-form-container">
-        <h4>New post</h4>
-        <form id="post-form">
-                <div class="post-form-image">
-                    <input id="files-input" class="p-photo" type="file" label="Files"  accept="image/*,capture=camera">
-                </div>
-                <div class="post-form-caption">
-                    <input type="text" id="post-form-input" placeholder="Write your post!">              
-                </div>
-                <div class="post-form-submit">
-                    <button type="submit" id="createPostBtn">
-                        Post
-                    </button>
-                </div>  
-        </form>
-    </div>
-    <!-- /formulario -->
-
-    <!-- cta post -->
-    <div class="cta-post" id="cta-post-btn">
-        <a class="btn">
-            <i class="material-icons">create</i>
-        </a>
-    </div>
-    <!-- cta post -->
-
-</body>
-
-    <script src="public/js/jquery.timeago.js"></script>
-    <script src="public/js/moment.min.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-	<script src="app/firebase-config.js"></script>
-	<script src="app/auth.js"></script>
-	<script src="app/ready.js"></script>
-    <script src="app/app.js"></script>
-
-</html>
-

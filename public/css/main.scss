@@ -917,7 +917,7 @@ header{
 				a{
 					color: $black;
 					font-size: 19px;
-					font-weight: bold;
+					font-weight: lighter;
 
 					i{
 						font-weight: normal !important;
@@ -939,7 +939,75 @@ header{
 	display: none;
 }
 
+header.header-profile{
+	width: 100%;
+	height: 85px;
+	display: flex;
+	justify-content:space-between;
+	align-items:center;
+	background: transparent;
+	padding: 0 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	box-shadow: none;
 
+	.logo{
+		h1{
+			color: $white;
+			font-weight: bold;
+		}
+	}
+
+	nav{
+
+		ul{
+			list-style: none;
+			margin:0;
+			padding: 0;
+			display: flex;
+
+			.header-user{
+				padding-left: 50px;
+
+				img{
+					width: 45px;
+					height: 45px;
+					margin-right: 5px;
+				}
+				
+			}
+
+			li{
+				display: flex;
+				align-items:center;
+				padding-right: 10px;
+
+				a i:hover{
+					text-decoration: none;
+					color: $accent;
+				}
+				a:hover{
+					text-decoration: none;
+					color: $accent;
+				}
+				a{
+					color: $white;
+					font-size: 19px;
+					font-weight: lighter;
+
+					i{
+						font-weight: normal !important;
+						padding-right: 3px;
+						font-size: 34px !important;
+						color: $white;
+					}
+				}
+			}
+		}
+	}
+}
 
 
 
@@ -1036,6 +1104,113 @@ $duration: 1.4s;
 		  
 
 		}
+
+}
+
+
+/*
+///////////////////////////////////////
+  PROFILE
+//////////////////////////////////////
+*/
+.c-top-profile{
+  margin-top: 0px;
+}
+
+.profile-top{
+  width: 100%;
+  height: 100vh;
+  background-size:cover !important;
+  background-position: center !important; 
+
+  .profile-top-info{
+  	width: 100%;
+  	height: 100vh;
+  }
+
+  .profile-top-bg{
+    width: 100%;
+	background: -moz-linear-gradient(top, rgba(0,0,0,0) 35%, rgba(0,0,0,0.01) 36%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(0,0,0,0) 35%,rgba(0,0,0,0.01) 36%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(0,0,0,0) 35%,rgba(0,0,0,0.01) 36%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+    padding: 50px 35px;
+    height: 100vh;
+    display: flex;
+    align-items:flex-end;
+    color: $white;
+
+
+
+    .profile-top-info-pp{
+    	img{
+			width: 100px;
+			height: 100px;
+    	}
+    }
+
+    .profile-top-info-name-bio{
+    	margin-left: 20px;
+
+    	h2{
+    		font-size: 42px;
+    		font-weight: lighter;
+    		display: block;
+    		margin: 0;
+    		padding: 0;
+    	}
+
+    	p{
+    		margin:0;
+    		padding: 0;
+    		font-size: 19px;
+    		font-weight: lighter;
+    	}
+    }
+
+    .profile-top-numbers{
+
+    	ul{
+    		list-style: none;
+    		margin:0;
+    		padding: 0;
+			display: flex;
+
+			li{
+				padding-right: 25px;
+				text-align: center;
+				h6{
+					font-size: 24px;
+					font-weight: lighter;
+					display: block;
+				}
+
+				span{
+					font-size: 18px;
+					font-weight: lighter;
+
+				}
+			}
+
+    	}
+    }
+
+    .profile-top-cta{
+    	margin: 10px 0 30px;
+
+
+    	a{
+    		color: $white;
+    		background: $accent;
+    		border-radius: 10px;
+    		padding: 10px 45px;
+    		font-size: 19px;
+    		font-weight: bold;
+
+    	}
+    }
+
+  }
 
 }
 
