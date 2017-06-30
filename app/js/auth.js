@@ -17,13 +17,15 @@ function loginWithFacebook(){
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
     // ...
+
+    console.log(errorMessage);
     });
 
     setTimeout(
       function() 
       {
         registerUser();
-      }, 5000);
+      }, 4000);
 
 }
 
@@ -58,10 +60,9 @@ function registerUser() {
         //Resultado de la consulta
         var user_result = snapshot.numChildren();
 
-        console.log(user_result);
-
+        //Hacemos la operaciòn para saber si el usuario existe o no
         if(user_result > 0){
-            
+            //Si user_result es mayor a 0 el usuario ya existe
         }else{
             
             //Si el usuario no existe, lo insertamos en la base de datos
@@ -75,6 +76,7 @@ function registerUser() {
                     user_profile_picture: photoUrl,
                     user_register_time: time,
                     user_uname:'',
+                    user_cover_photo:'',
 
                 });
         }

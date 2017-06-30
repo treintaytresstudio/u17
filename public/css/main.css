@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Leckerli+One");
 body {
   overflow-x: hidden;
   background: rgba(223, 230, 244, 0.2); }
@@ -22,10 +23,14 @@ main {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out; }
 
+.logo-font {
+  font-family: "Leckerli One", cursive !important; }
+
 .bg-actions {
   width: 100%;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.95);
+  background-image: linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%);
+  opacity: 0.75;
   position: fixed;
   top: 0;
   left: 0;
@@ -52,6 +57,49 @@ main {
   background: #3B5998;
   color: white;
   font-size: 18px; }
+
+.btn-action {
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  padding: 12.5px 40px;
+  border-radius: 6px;
+  font-size: 19px;
+  font-weight: bold;
+  color: #5b6775;
+  cursor: pointer; }
+
+.btn-action:hover {
+  text-decoration: none;
+  color: #5b6775;
+  background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%); }
+
+#link-novalid {
+  background-image: linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 90000000000000000; }
+  #link-novalid div {
+    text-align: center; }
+    #link-novalid div h1 {
+      color: white;
+      font-size: 200px !important;
+      display: block;
+      margin: 0;
+      padding: 0; }
+    #link-novalid div p {
+      font-size: 32px;
+      font-weight: lighter;
+      color: white;
+      margin: 0; }
+    #link-novalid div .btn-action {
+      margin-top: 5px;
+      display: inline-block; }
 
 /*
 ///////////////////////////////////////
@@ -622,8 +670,7 @@ header {
   z-index: 1000;
   box-shadow: 0 10px 20px 0 #dfe6f4; }
   header .logo h1 {
-    color: #5b6775;
-    font-weight: bold; }
+    color: #5b6775; }
   header nav ul {
     list-style: none;
     margin: 0;
@@ -675,8 +722,7 @@ header.header-profile {
   z-index: 1000;
   box-shadow: none; }
   header.header-profile .logo h1 {
-    color: white;
-    font-weight: bold; }
+    color: white; }
   header.header-profile nav ul {
     list-style: none;
     margin: 0;
@@ -783,6 +829,9 @@ header.header-profile {
   PROFILE
 //////////////////////////////////////
 */
+#profileContainer {
+  display: none; }
+
 .c-top-profile {
   margin-top: 0px; }
 

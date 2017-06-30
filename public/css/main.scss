@@ -6,10 +6,14 @@ $black : #5b6775;
 $white :white;
 $grey : #ccc;
 
+//Importamos las fuentes
+@import url('https://fonts.googleapis.com/css?family=Leckerli+One');
+
 body{
 	overflow-x: hidden; 
 	background: rgba(223,230,244,.2);
 }
+
 main{
 	width: 100%;
 	height: 100vh;
@@ -29,17 +33,21 @@ main{
 	}
 }
 
+
 *{
 	-webkit-transition: all 0.25s ease-in-out;
 	-moz-transition: all 0.25s ease-in-out;
 	-o-transition: all 0.25s ease-in-out;
 	transition: all 0.25s ease-in-out;
 }
-
+.logo-font{
+	font-family: 'Leckerli One', cursive!important;
+}
 .bg-actions{
 	width: 100%;
 	height: 100vh;
-	background: rgba(255,255,255,0.95);
+	background-image:linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%);
+	opacity: 0.75;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -68,6 +76,60 @@ main{
 	background: #3B5998;
 	color: $white;
 	font-size: 18px;
+}
+
+.btn-action{
+	background-image:linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+	padding: 12.5px 40px;
+	border-radius: 6px;
+	font-size: 19px;
+	font-weight: bold;
+	color: $main;
+	cursor: pointer;
+}
+.btn-action:hover{
+	text-decoration: none;
+	color: $main;
+	background-image:linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+}
+
+#link-novalid{
+	background-image:linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%);
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+	display: none;
+	position:fixed;
+	top: 0;
+	left: 0;
+	z-index: 90000000000000000;
+
+	div{
+		text-align: center;
+		h1{
+			color: $white;
+			font-size: 200px !important;
+			display: block;
+			margin:0;
+			padding: 0;
+		}
+
+		p{
+			font-size: 32px;
+			font-weight: lighter;
+			color: $white;
+			margin:0;
+		}
+		.btn-action{
+			margin-top: 5px;
+			display: inline-block;
+		}
+	}
+	
+	
+
 }
 /*
 ///////////////////////////////////////
@@ -878,7 +940,6 @@ header{
 	.logo{
 		h1{
 			color: $black;
-			font-weight: bold;
 		}
 	}
 
@@ -956,7 +1017,6 @@ header.header-profile{
 	.logo{
 		h1{
 			color: $white;
-			font-weight: bold;
 		}
 	}
 
@@ -1113,6 +1173,11 @@ $duration: 1.4s;
   PROFILE
 //////////////////////////////////////
 */
+
+#profileContainer{
+	display: none;
+}
+
 .c-top-profile{
   margin-top: 0px;
 }
@@ -1213,6 +1278,7 @@ $duration: 1.4s;
   }
 
 }
+
 
 
 

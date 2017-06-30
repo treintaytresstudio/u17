@@ -34,7 +34,7 @@
     <!-- si el usuario, está logueado -->
     <header class="headerUser">
         <div class="logo">
-            <h1>Ultra</h1>
+            <h1 class="logo-font">Ultra</h1>
         </div>
         <nav>
             <ul>

@@ -5,8 +5,9 @@ $("document").ready(function(){
 
         //Si estamos en el perfil, lo mandamos llamar
         if(userProfileID){
-                getProfile(userProfileID);
                 $("header").hide();
+                getProfile(userProfileID);
+                listenProfile(userProfileID);
                 
         }
         

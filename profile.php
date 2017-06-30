@@ -5,9 +5,6 @@
     <!-- header include -->
     <?php include 'views/header.php' ?>  
 
-    <div class="user">
-        
-    </div>
 
     <!-- profile main -->
     <div class="fluid-container c-top-profile getProfile" id="<?php echo $userProfile; ?>">
@@ -29,7 +26,8 @@
                                     <img class="userProfilePhoto avatar" src="" alt="">
                                 </div>
                                 <div class="profile-top-info-name-bio">
-                                    <h2>Nombre del Usuario</h2>
+                                    <h2 class="userProfileName"></h2>
+                                    <h5 class="userProfileUserName"></h5>
                                     <p>
                                         This is a short bio description for user they can use links.
                                     </p>
@@ -68,7 +66,7 @@
 
                         </div>
                         <!-- /profile top bg -->
-                        
+
                     </div>
                     <!-- /profile top info -->
 
@@ -78,6 +76,7 @@
         </div>
     </div>
     <!-- /profile main -->
+    
 
     <!-- footer include -->
     <?php include 'views/footer.php' ?> 

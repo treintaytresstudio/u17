@@ -451,47 +451,6 @@ function like(uid,post_id){
   
 }
 
-//Get Profile
-function getProfile(userProfileID){
-  console.log(userProfileID);
-  var rootRef = firebase.database().ref().child("users/").orderByChild("user_id").equalTo(userProfileID)
-
-  rootRef.once('value')
-    .then(function(snapshot) {
-
-      snapshot.forEach(function(userSnapshot) {
-        var user = userSnapshot.val();
-        var user_id = user.user_id;
-        var user_name_ =user.user_name;
-        var user_pp = user.user_profile_picture;
-
-        //Foto de perfil del usuario 
-        $(".userProfilePhoto").attr("src", user_pp);
-        
-        console.log(user_id);
-        if(userProfileID = user_id){
-          //Mostramos perfil
-          $("header").addClass("header-profile");
-          setTimeout(
-            function() 
-            {
-
-              $("header").show();
-
-            }, 2000);
-        }else{
-          //Este no es mi perfil
-        }
-
-
-
-      })
-               
-    });
-    
-
-}
-
 
 
 
