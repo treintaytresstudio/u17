@@ -31,6 +31,7 @@
                                     <p>
                                         This is a short bio description for user they can use links.
                                     </p>
+                                    <h1 class="rootUser"></h1>
                                 </div>
                             </div>
                             <!-- /profile number and name -->

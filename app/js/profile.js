@@ -35,6 +35,7 @@ function getProfile(userProfileID){
             }, 2000);
 
           //Asignamos las variables del objeto
+          
           var user = userSnapshot.val();
           var user_id = user.user_id;
           var user_name_ =user.user_name;
@@ -47,6 +48,9 @@ function getProfile(userProfileID){
           $(".userProfileName").html(user_name_);
           //Nombre de usuario
           $(".userProfileUserName").html('@'+user_uname);
+
+          $(".rootUser").html(user);
+ 
 
         })
       }

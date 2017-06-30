@@ -1,8 +1,8 @@
 $("document").ready(function(){
 
+
         //getProfile(ProfileID);
         var userProfileID = ("getProfile: ", $(".getProfile").attr('id'));
-
         //Si estamos en el perfil, lo mandamos llamar
         if(userProfileID){
                 $("header").hide();
@@ -11,7 +11,6 @@ $("document").ready(function(){
                 
         }
         
-
 
         //Verificamos si el usuario está conectado
 	firebase.auth().onAuthStateChanged(function(user) {
@@ -92,15 +91,32 @@ $("document").ready(function(){
                 });
 
 
+                //Saber si estamos en la secciòn settings
+                var userSettings = ("userIsOnSettings: ", $("#userIsOnSettings").attr('id'));
+                //Si estamos en settings
+                if(userSettings){
+                        //Agregamos la clase transparente al  header
+                        $("header").addClass("header-profile");
+                        //No mostramos el botòn de post
+                        $("#cta-post-btn").css("display","none");
+                }
+
+                //Mandamos llamar a la funciòn para actualizar usario
+                $("#updateUserBtn").click(function(e){
+                        e.preventDefault();
+                        
+                        getSettings(uid);
+                   
+                        
+                });
+
+
 	  } else {
 	        $(".headerNoUser").css("display", "flex");
                 $(".headerUser").css("display" ,"none");
 	  }
 
 	});
-
-
-
 
 	
 });

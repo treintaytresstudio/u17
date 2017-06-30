@@ -64,7 +64,7 @@
         </nav>
     </header>
     
-    <!-- si el usuario, no está logueado 
+    <!-- si el usuario, no está logueado -->
     <header class="headerNoUser">
         <div class="logo">
             <h1>Ultra</h1>

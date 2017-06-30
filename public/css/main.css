@@ -11,6 +11,9 @@ main {
   border-radius: 50%;
   overflow: hidden; }
 
+.p-bt {
+  padding: 120px 0 100px; }
+
 .section-title {
   margin-bottom: 20px; }
   .section-title h2 {
@@ -36,6 +39,9 @@ main {
   left: 0;
   z-index: 300000;
   display: none; }
+
+.bg-magic {
+  background-image: linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%); }
 
 .flex-uses {
   display: flex;
@@ -72,8 +78,23 @@ main {
   color: #5b6775;
   background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%); }
 
+.btn-action-colored {
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 12.5px 40px;
+  border-radius: 6px;
+  font-size: 19px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  cursor: pointer; }
+
+.btn-action-colored:hover {
+  text-decoration: none;
+  color: white;
+  background-image: linear-gradient(135deg, #475fca 0%, #764ba2 100%); }
+
 #link-novalid {
-  background-image: linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%);
+  background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   width: 100%;
   height: 100vh;
   display: flex;
@@ -513,7 +534,7 @@ main {
           margin-right: 10px; }
           .post .post-content .post-content-actions ul li i {
             font-size: 28px;
-            color: #ccc;
+            color: #e7ecf4;
             cursor: pointer; }
           .post .post-content .post-content-actions ul li i.like-active {
             color: #5fedb6; }
@@ -538,7 +559,7 @@ main {
         padding-left: 10px;
         box-sizing: border-box;
         border-radius: 6px;
-        border: 1px solid #ccc;
+        border: 1px solid #e7ecf4;
         outline: none; }
       .post .post-content .post-content-comment-box button {
         background: #5fedb6;
@@ -561,7 +582,7 @@ main {
           padding-left: 5px;
           padding-top: 4px;
           font-size: 14px;
-          color: #ccc; }
+          color: #e7ecf4; }
       .post .post-content .post-content-comments .post-content-comment-item .post-content-comment-item-caption p {
         font-weight: lighter; }
 
@@ -898,5 +919,56 @@ header.header-profile {
         padding: 10px 45px;
         font-size: 19px;
         font-weight: bold; }
+
+/*
+///////////////////////////////////////
+  SETTINGS
+//////////////////////////////////////
+*/
+.settings {
+  height: auto;
+  overflow: hidden;
+  background: white;
+  border-radius: 6px;
+  -webkit-box-shadow: inset 0 0 0px transparent;
+  padding: 30px;
+  box-sizing: border-box;
+  border: 1px solid #f3f5f9; }
+  .settings .settings-pp {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding: 10px 0;
+    text-align: center; }
+    .settings .settings-pp img {
+      width: 100px;
+      height: 100px;
+      margin: 0px auto 10px;
+      display: block; }
+  .settings .settings-item {
+    width: 100%;
+    display: block;
+    height: auto;
+    overflow: hidden;
+    margin: 10px 0; }
+    .settings .settings-item label {
+      color: white; }
+    .settings .settings-item input[type="text"] {
+      width: 90%;
+      margin: 0 auto;
+      border: 2px solid white;
+      border-radius: 50px;
+      height: 50px;
+      outline: none;
+      padding-left: 16px;
+      box-sizing: border-box; }
+  .settings .form-group i {
+    color: #5fedb6;
+    font-size: 32px;
+    padding-right: 5px; }
+  .settings .form-group label {
+    font-weight: bold; }
+  .settings .form-group input, .settings .form-group textarea {
+    border: 2px solid #e7ecf4 !important; }
 
 /*# sourceMappingURL=main.css.map */
