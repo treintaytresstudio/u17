@@ -33,7 +33,7 @@ function getSettings(uid){
 	                $(".settings_name").html(user_name);
 	                $(".settings_profile_picture").attr("src", user_profile_picture);
 	                $(".settings_user_name").html(user_user_name);
-	                $(".settings_cover_photo").html(user_cover_photo);
+	                $(".settings_cover_photo").attr("src", user_cover_photo);
 	                $(".settings_age").html(user_age);
 	                $(".settings_bio").html(user_bio);
 	                $(".settings_country").html(user_country);
@@ -84,6 +84,7 @@ function listenSettings(uid){
 	    //Asignamos los valores para utilizarlos en el DOM
 	    $(".settings_name").html(settings_name);
 	    $(".settings_profile_picture").attr("src", settings_profile_picture);
+	    $(".settings_cover_photo").attr("src", settings_cover_photo);
 	    $(".settings_user_name").html(settings_user_name);
 	    $(".settings_cover_photo").html(settings_cover_photo);
 	    $(".settings_age").html(settings_age);
@@ -113,8 +114,7 @@ function listenSettings(uid){
 
 
 //Función para actualizar los datos del usuario
-function updateUser(uid){
-
+function updateUser(uid, input_cover, input_profile){
 	//Referencia para utilizar el usuario en firebase auth
 	var user = firebase.auth().currentUser;
 
@@ -129,6 +129,7 @@ function updateUser(uid){
 	var email_user= $("#emailUser").val();
 	var username_user= $("#usernameUser").val();
 
+
 	//Función para actualizar al usuario en firebase auth 
 	user.updateProfile({
 	  displayName: name_user,
@@ -140,15 +141,29 @@ function updateUser(uid){
 			var rootRef = firebase.database().ref().child("users/").orderByChild("user_id")
 			.equalTo(uid)
 
+
 			  //Sacamos el id firebase del usuario
 			  rootRef.once('value')
 			    .then(function(snapshot) {
 
 			        var user_on_settings = snapshot.val();
+			        for(user in user_on_settings){	
 
-			        for(user in user_on_settings){		                
 			                //id asignado por firebase 
 			                var id = user;
+
+			                if(input_cover){
+			                	//Mandamos llamar la función para subir cover
+			                	uploadPhotoCover(uid,id,input_cover);
+			                }
+
+
+			                if(input_profile){
+			                	//Mandamos llamar la función para subir cover
+			                	uploadPhotoProfile(uid,id,input_profile);
+			                }
+			                
+
 
 			                //Ruta del usuario a actualizar
 			                var userUpdate = firebase.database().ref().child("users/"+id)
@@ -162,7 +177,7 @@ function updateUser(uid){
 			                	user_country:country_user,
 			                	user_facebook:facebook_user,
 			                	user_instagram:instagram_user,
-			                	user_twitter:twitter_user, 
+			                	user_twitter:twitter_user,
 			                });
 
 			        }
@@ -176,7 +191,141 @@ function updateUser(uid){
 }
 
 
+//Subir foto de cover 
+function uploadPhotoCover(uid,id,input_cover){
 
+	//Referencias para guardar las fotos
+	var storageRef = firebase.storage().ref('images/users/cover');
 
+	// File or Blob named mountains.jpg
+	var file = input;
 
+	// Create the file metadata
+	var metadata = {
+	  contentType: 'image/jpeg'
+	};
+
+	//Metadatos
+	var uploadsMetadata = {
+	  cacheControl: "max-age=" + (60 * 60 * 24 * 365) // One year of seconds
+	};
+
+	//Asignamos la fecha en la que se subió al nombre
+	var time = $.now();
+
+	// Upload the file
+	var uploadTask = storageRef.child(time+uid+file.name).put(file, uploadsMetadata);
+
+	// Listen for state changes, errors, and completion of the upload.
+	uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+	  function(snapshot) {
+	    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+	    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+	    console.log('Upload is ' + progress + '% done');
+	    switch (snapshot.state) {
+	      case firebase.storage.TaskState.PAUSED: // or 'paused'
+	        console.log('Upload is paused');
+	        break;
+	      case firebase.storage.TaskState.RUNNING: // or 'running'
+	        console.log('Upload is running');
+	        break;
+	    }
+	  }, function(error) {
+	  switch (error.code) {
+	    case 'storage/unauthorized':
+	      // User doesn't have permission to access the object
+	      break;
+
+	    case 'storage/canceled':
+	      // User canceled the upload
+	      break;
+
+	    case 'storage/unknown':
+	      // Unknown error occurred, inspect error.serverResponse
+	      break;
+	  }
+	}, function() {
+	  // Obtenemos el URL de la foto subida
+	  var downloadURL = uploadTask.snapshot.downloadURL;
+
+	  //Ruta al usuario solicitado por medio de userProfileID que recibimos por parametro
+	  var userUpdate = firebase.database().ref().child("users/"+id)
+
+	  //Función y datos para actualizar la foto de cover
+	  userUpdate.update({ 
+	  	user_cover_photo: downloadURL
+	  });
+	});
+	
+
+}
+
+//Subir foto de perfil de usuario 
+function uploadPhotoProfile(uid,id,input_profile){
+
+	//Referencias para guardar las fotos
+	var storageRef = firebase.storage().ref('images/users/profile');
+
+	// File or Blob named mountains.jpg
+	var file = input_profile;
+
+	// Create the file metadata
+	var metadata = {
+	  contentType: 'image/jpeg'
+	};
+
+	//Metadatos
+	var uploadsMetadata = {
+	  cacheControl: "max-age=" + (60 * 60 * 24 * 365) // One year of seconds
+	};
+
+	//Asignamos la fecha en la que se subió al nombre
+	var time = $.now();
+
+	// Upload the file
+	var uploadTask = storageRef.child(time+uid+file.name).put(file, uploadsMetadata);
+
+	// Listen for state changes, errors, and completion of the upload.
+	uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+	  function(snapshot) {
+	    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+	    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+	    console.log('Upload is ' + progress + '% done');
+	    switch (snapshot.state) {
+	      case firebase.storage.TaskState.PAUSED: // or 'paused'
+	        console.log('Upload is paused');
+	        break;
+	      case firebase.storage.TaskState.RUNNING: // or 'running'
+	        console.log('Upload is running');
+	        break;
+	    }
+	  }, function(error) {
+	  switch (error.code) {
+	    case 'storage/unauthorized':
+	      // User doesn't have permission to access the object
+	      break;
+
+	    case 'storage/canceled':
+	      // User canceled the upload
+	      break;
+
+	    case 'storage/unknown':
+	      // Unknown error occurred, inspect error.serverResponse
+	      break;
+	  }
+	}, function() {
+	  // Obtenemos el URL de la foto subida
+	  var downloadURL = uploadTask.snapshot.downloadURL;
+
+	  //Ruta al usuario solicitado por medio de userProfileID que recibimos por parametro
+	  var userUpdate = firebase.database().ref().child("users/"+id)
+
+	  //Función y datos para actualizar la foto de cover
+	  userUpdate.update({ 
+	  	user_profile_picture: downloadURL
+	  });
+	});
+	
+
+}
 

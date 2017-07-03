@@ -1023,7 +1023,12 @@ $duration: 1.4s;
 			display: block;
 		}
 	}
-
+	
+	.settings-photo{
+		width: 100%;
+		height: auto;
+		overflow: hidden;
+	}
 	.settings-item{
 		width: 100%;
 		display: block;

@@ -14,7 +14,7 @@
             <div class="profile-top">
 
                     <!-- profile top info -->
-                    <div class="profile-top-info" style="background:url(public/img/bg.jpg); ">
+                    <div class="profile-top-info userCoverPhoto">
                         <!-- profile top bg -->
                         <div class="profile-top-bg">
 

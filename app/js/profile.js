@@ -41,9 +41,12 @@ function getProfile(userProfileID){
           var user_name_ =user.user_name;
           var user_uname =user.user_uname;
           var user_pp = user.user_profile_picture;
+          var user_cover_photo = user.user_cover_photo;
 
           //Foto de perfil del usuario
           $(".userProfilePhoto").attr("src", user_pp);
+          //Foto de cover de perfil de usuario
+          $(".userCoverPhoto").attr("style", "background:url("+user_cover_photo+")");
           //Nombre del usario
           $(".userProfileName").html(user_name_);
           //Nombre de usuario
@@ -71,11 +74,17 @@ function listenProfile(userProfileID){
 
     var user_name_ = snap.child("user_name").val();
     var user_uname = snap.child("user_uname").val();
+    var user_cover_photo = snap.child("user_cover_photo").val();
+    var user_profile_photo = snap.child("user_profile_picture").val();
 
     //Nombre del usario
     $(".userProfileName").html(user_name_);
     //Nombre de usuario
     $(".userProfileUserName").html('@'+user_uname);
+    //Foto de cover de perfil de usuario
+    $(".userCoverPhoto").attr("style", "background:url("+user_cover_photo+")");
+    //Foto de perfil del usuario
+    $(".userProfilePhoto").attr("src", user_profile_photo);
 
     
     });

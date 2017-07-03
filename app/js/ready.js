@@ -128,7 +128,13 @@ $("document").ready(function(){
                 //Mandamos llamar a la funciòn para actualizar usuario
                 $("#updateUserBtn").click(function(e){
                         e.preventDefault();
-                        updateUser(uid);
+
+                        //imagen de cover valor
+                        input_cover = $("#cover-input")[0].files[0];
+                        //imagen de perfil valor
+                        input_profile = $("#profile-input")[0].files[0];
+
+                        updateUser(uid,input_cover,input_profile);
 
                         //Mostramos BG Actions
                         $(".bg-actions").css("display","block");
@@ -145,7 +151,7 @@ $("document").ready(function(){
 
                             //Ocultamos loader global
                             $(".loader-global").css("display","none");
-                          }, 1000);
+                          }, 3000);
                    
                         
                 });

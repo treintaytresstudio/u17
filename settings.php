@@ -74,14 +74,20 @@
                                 <legend>Photos</legend>
 
                                 <div class="form-group">
+
+                                <img src="" class="settings_cover_photo settings-photo">
+
                                 <label for="exampleInputFile" class="flex-uses"><i class="material-icons">photo_library</i>Cover Photo</label>
-                                <input type="file" class="form-control-file" id="settings" aria-describedby="fileHelp">
+                                <input type="file" class="form-control-file" id="cover-input" aria-describedby="fileHelp">
                                 <small id="fileHelp" class="form-text text-muted">Select your cover photo.</small>
                                 </div>
 
                                 <div class="form-group">
+
+                                <img src="" class="settings_profile_picture settings-photo">
+
                                 <label for="exampleInputFile" class="flex-uses"><i class="material-icons">insert_photo</i>Profile Photo</label>
-                                <input type="file" class="form-control-file" id="settings" aria-describedby="fileHelp">
+                                <input type="file" class="form-control-file" id="profile-input" aria-describedby="fileHelp">
                                 <small id="fileHelp" class="form-text text-muted">Select your profile photo.</small>
                                 </div>
 

@@ -716,6 +716,10 @@ header.header-profile {
       height: 100px;
       margin: 0px auto 10px;
       display: block; }
+  .settings .settings-photo {
+    width: 100%;
+    height: auto;
+    overflow: hidden; }
   .settings .settings-item {
     width: 100%;
     display: block;
