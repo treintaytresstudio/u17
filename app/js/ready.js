@@ -129,6 +129,23 @@ $("document").ready(function(){
                 $("#updateUserBtn").click(function(e){
                         e.preventDefault();
                         updateUser(uid);
+
+                        //Mostramos BG Actions
+                        $(".bg-actions").css("display","block");
+
+                        //Mostramos loader global
+                        $(".loader-global").css("display","flex");  
+
+                        setTimeout(
+                          function() 
+                          {
+
+                            //Cerramos BG Actions
+                            $(".bg-actions").css("display","none");
+
+                            //Ocultamos loader global
+                            $(".loader-global").css("display","none");
+                          }, 1000);
                    
                         
                 });

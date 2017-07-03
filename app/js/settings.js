@@ -60,41 +60,52 @@ function getSettings(uid){
 	
 }
 
-
-
-//Escuchar si hay algùn cambio en los posts globales
+//Escuchar si hay algùn cambio en los datos del usuario
 function listenSettings(uid){
     //Ruta al usuario solicitado por medio de userProfileID que recibimos por parametro
     var rootRef = firebase.database().ref().child("users/").orderByChild("user_id")
     .equalTo(uid)
     rootRef.on("child_changed", snap =>{
 
-
-    //Asignamos los valores para utilizarlos en el DOM
-    var settings_name = snap.child("user_name").val();
-    var settings_profile_picture = snap.child("user_profile_picture").val();
-    var settings_user_name= snap.child("user_user_name").val();
-    var settings_cover_photo= snap.child("user_cover_photo").val();
-    var settings_age= snap.child("user_age").val();
-    var settings_bio= snap.child("user_bio").val();
-    var settings_country= snap.child("user_country").val();
-    var settings_facebook= snap.child("user_facebook").val();
-    var settings_instagram= snap.child("user_instagram").val();
-    var settings_twitter= snap.child("user_twitter").val();
-    var settings_email= snap.child("user_email").val();
-
+	    //Asignamos los valores a las variables
+	    var settings_name = snap.child("user_name").val();
+	    var settings_profile_picture = snap.child("user_profile_picture").val();
+	    var settings_user_name= snap.child("user_user_name").val();
+	    var settings_cover_photo= snap.child("user_cover_photo").val();
+	    var settings_age= snap.child("user_age").val();
+	    var settings_bio= snap.child("user_bio").val();
+	    var settings_country= snap.child("user_country").val();
+	    var settings_facebook= snap.child("user_facebook").val();
+	    var settings_instagram= snap.child("user_instagram").val();
+	    var settings_twitter= snap.child("user_twitter").val();
+	    var settings_email= snap.child("user_email").val();
 
 
-    //Asignamos valores para usar en formulario
-    $(".settings_name_form").val(settings_name);
-    $(".settings_user_name_form").val(settings_user_name);
-    $(".settings_age_form").val(settings_age);
-    $(".settings_bio_form").val(settings_bio);
-    $(".settings_country_form").val(settings_country);
-    $(".settings_facebook_form").val(settings_facebook);
-    $(".settings_instagram_form").val(settings_instagram);
-    $(".settings_twitter_form").val(settings_twitter);
-    $(".settings_email_form").val(settings_email);
+	    //Asignamos los valores para utilizarlos en el DOM
+	    $(".settings_name").html(settings_name);
+	    $(".settings_profile_picture").attr("src", settings_profile_picture);
+	    $(".settings_user_name").html(settings_user_name);
+	    $(".settings_cover_photo").html(settings_cover_photo);
+	    $(".settings_age").html(settings_age);
+	    $(".settings_bio").html(settings_bio);
+	    $(".settings_country").html(settings_country);
+	    $(".settings_facebook").html(settings_facebook);
+	    $(".settings_instagram").html(settings_instagram);
+	    $(".settings_twitter").html(settings_twitter);
+	    $(".settings_email").html(settings_email);
+
+
+
+	    //Asignamos valores para usar en formulario
+	    $(".settings_name_form").val(settings_name);
+	    $(".settings_user_name_form").val(settings_user_name);
+	    $(".settings_age_form").val(settings_age);
+	    $(".settings_bio_form").val(settings_bio);
+	    $(".settings_country_form").val(settings_country);
+	    $(".settings_facebook_form").val(settings_facebook);
+	    $(".settings_instagram_form").val(settings_instagram);
+	    $(".settings_twitter_form").val(settings_twitter);
+	    $(".settings_email_form").val(settings_email);
     
     });
 }
@@ -155,6 +166,7 @@ function updateUser(uid){
 			                });
 
 			        }
+
 			       
 			})
 
