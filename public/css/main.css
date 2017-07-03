@@ -634,7 +634,9 @@ header.header-profile {
   background-position: center !important; }
   .profile-top .profile-top-info {
     width: 100%;
-    height: 100vh; }
+    height: 100vh;
+    background-size: cover !important;
+    background-position: center !important; }
   .profile-top .profile-top-bg {
     width: 100%;
     background: -moz-linear-gradient(top, transparent 35%, rgba(0, 0, 0, 0.01) 36%, rgba(0, 0, 0, 0.65) 100%);
@@ -717,9 +719,10 @@ header.header-profile {
       margin: 0px auto 10px;
       display: block; }
   .settings .settings-photo {
-    width: 100%;
+    width: 100px;
     height: auto;
-    overflow: hidden; }
+    overflow: hidden;
+    margin-bottom: 20px; }
   .settings .settings-item {
     width: 100%;
     display: block;

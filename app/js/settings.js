@@ -134,6 +134,7 @@ function updateUser(uid, input_cover, input_profile){
 	user.updateProfile({
 	  displayName: name_user,
 	  //photoURL: "https://example.com/jane-q-user/profile.jpg"
+
 	}).then(function() {
 
 
@@ -198,7 +199,7 @@ function uploadPhotoCover(uid,id,input_cover){
 	var storageRef = firebase.storage().ref('images/users/cover');
 
 	// File or Blob named mountains.jpg
-	var file = input;
+	var file = input_cover;
 
 	// Create the file metadata
 	var metadata = {
@@ -324,8 +325,18 @@ function uploadPhotoProfile(uid,id,input_profile){
 	  userUpdate.update({ 
 	  	user_profile_picture: downloadURL
 	  });
+
+	  var user = firebase.auth().currentUser;
+
+	  user.updateProfile({
+	    photoURL: downloadURL
+	  }).then(function() {
+	    // Update successful.
+	  }, function(error) {
+	    // An error happened.
+	  });
+	  
 	});
-	
 
 }
 

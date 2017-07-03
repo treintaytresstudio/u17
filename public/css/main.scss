@@ -899,6 +899,8 @@ $duration: 1.4s;
   .profile-top-info{
   	width: 100%;
   	height: 100vh;
+  	background-size: cover !important;
+  	background-position: center !important;
   }
 
   .profile-top-bg{
@@ -1025,9 +1027,10 @@ $duration: 1.4s;
 	}
 	
 	.settings-photo{
-		width: 100%;
+		width: 100px;
 		height: auto;
 		overflow: hidden;
+		margin-bottom: 20px;
 	}
 	.settings-item{
 		width: 100%;

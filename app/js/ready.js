@@ -1,36 +1,16 @@
 $("document").ready(function(){
 
-        
-        /*working
-        //Ruta al usuario solicitado por medio de userProfileID que recibimos por parametro
-        var rootRef = firebase.database().ref().child("hashtags/")
 
-          rootRef.once('value')
-            .then(function(snapshot) {
-
-                var data = snapshot.val();
-
-                for(hashtag in data){
-                        var id = hashtag;
-                        var caption = data[hashtag].hashtag_caption;
-                        console.log(caption);
-
-                }
-        })
-        */
-     
-
-
-        //getProfile(ProfileID);
-        var userProfileID = ("getProfile: ", $(".getProfile").attr('id'));
-        //Si estamos en el perfil, lo mandamos llamar
-        if(userProfileID){
-                $("header").hide();
-                getProfile(userProfileID);
-                listenProfile(userProfileID);
-                
-        }
-        
+    //getProfile(ProfileID);
+    var userProfileID = ("getProfile: ", $(".getProfile").attr('id'));
+    //Si estamos en el perfil, lo mandamos llamar
+    if(userProfileID){
+            $("header").hide();
+            getProfile(userProfileID);
+            listenProfile(userProfileID);
+            
+    }
+    
 
     //Verificamos si el usuario está conectado
 	firebase.auth().onAuthStateChanged(function(user) {
@@ -151,7 +131,7 @@ $("document").ready(function(){
 
                             //Ocultamos loader global
                             $(".loader-global").css("display","none");
-                          }, 3000);
+                          }, 1000);
                    
                         
                 });
