@@ -4,16 +4,39 @@ function getGlobalPosts(){
     var rootRef = firebase.database().ref().child("posts/");
     rootRef.on("child_added", snap =>{
 
+    //Obtenemos el usuario conectado
+    var user = firebase.auth().currentUser;
+    var uid;
+    uid = user.uid;
+
 
     var post_id = snap.key;
     var post_caption = snap.child("post_caption").val();
     var post_user_name = snap.child("post_user_name").val();
     var post_user_profile_picture = snap.child("post_user_profile_picture").val();
     var post_image = snap.child("post_image").val();
- 
+    var likedBy = snap.child("post_like_users").val();
+
+    console.log(likedBy);
+  
+    for(user in likedBy){
+      //Asignamos lo valores del objeto
+      var user_name = likedBy[user].like_user;
+
+      //Si el usuario ya dio like, entonces pintamos de rojo el corazón
+      if(user_name === uid){
+        $(document).ready(function(){
+          $(".like-icon").css("color","red");
+        })
+        
+      }
+
+    }
 
     //Conseguimos el total de likes
     var total_likes = snap.child("post_like_users").numChildren();
+
+
 
     var html = `
         <!-- post -->
@@ -40,7 +63,7 @@ function getGlobalPosts(){
                 <div class="post-content-actions">
                     <ul>
                         <li class="like-action flex-uses">
-                            <i class="material-icons">favorite</i>
+                            <i class="material-icons like-icon">favorite</i>
                             <span>${total_likes}Likes</span>
                         </li>
                         <li class="like-action flex-uses">
@@ -69,6 +92,36 @@ function listenGlobalPosts(uid){
     var post_user_name = snap.child("post_user_name").val();
     var post_user_profile_picture = snap.child("post_user_profile_picture").val();
     var post_image = snap.child("post_image").val();
+
+    //Obtenemos el usuario conectado
+    var user = firebase.auth().currentUser;
+    var uid;
+    uid = user.uid;
+
+
+    var post_id = snap.key;
+    var post_caption = snap.child("post_caption").val();
+    var post_user_name = snap.child("post_user_name").val();
+    var post_user_profile_picture = snap.child("post_user_profile_picture").val();
+    var post_image = snap.child("post_image").val();
+    var likedBy = snap.child("post_like_users").val();
+
+    console.log(likedBy);
+    
+    for(user in likedBy){
+      //Asignamos lo valores del objeto
+      var user_name = likedBy[user].like_user;
+
+      //Si el usuario ya dio like, entonces pintamos de rojo el corazón
+      if(user_name === uid){
+        $(document).ready(function(){
+          $(".like-icon").css("color","red");
+        })
+        
+      }
+
+    }
+
     //Conseguimos el total de likes
     var total_likes = snap.child("post_like_users").numChildren();
 
@@ -97,7 +150,7 @@ function listenGlobalPosts(uid){
                 <div class="post-content-actions">
                     <ul>
                         <li class="like-action flex-uses">
-                            <i class="material-icons">favorite</i>
+                            <i class="material-icons like-icon">favorite</i>
                             <span>${total_likes}Likes</span>
                         </li>
                         <li class="like-action flex-uses">
@@ -222,73 +275,6 @@ function getUserPostsNew(uid){
     });
 }
 
-
-//Crear Post sin foto
-function createPost(uid,photoUrl,name,input) {
-var urlPhoto;
-
-//Mandamos llamar la funciòn para subir la foto
-uploadPhoto(uid, input);
-
-var post_caption = $("#post-form-input").val();
-var time = $.now();
- //Creamos el post global
- db.ref('posts/').push({
-          post_user_id:uid,
-          post_user_name: name,
-          post_user_profile_picture: photoUrl,
-          post_image: urlPhoto,
-          post_caption : post_caption,
-          post_time: time,
-
-      });
-
- //Insertamos el post en el Feed del usuario
- var user_feed = db.ref().child('user_feed/'+uid).child('posts');
-  user_feed.push({
-          post_user_id:uid,
-          post_user_name: name,
-          post_user_profile_picture: photoUrl,
-          post_image: urlPhoto,
-          post_caption : post_caption,
-          post_time: time,
-
-      });
-
-  //Insertamos el post en los post del usuario
-  var user_posts = db.ref().child('user_posts/'+uid).child('posts');
-  user_posts.push({
-          post_user_id:uid,
-          post_user_name: name,
-          post_user_profile_picture: photoUrl,
-          post_image: urlPhoto,
-          post_caption : post_caption,
-          post_time: time,
-
-      });
-
-  //Mostramos loader global
-  $(".loader-global").css("display","flex");
-
-  setTimeout(
-    function() 
-    {
-      //Reset al formulario
-      $("#post-form").trigger('reset');
-      $("#post-form-container").hide();
-
-      //Volvemos a mostrar el botòn
-      $("#cta-post-btn").css("display","block");
-
-      //Cerramos BG Actions
-      $(".bg-actions").css("display","none");
-
-      //Ocultamos loader global
-      $(".loader-global").css("display","none");
-    }, 500);
-}
-
-
 //Crear Post con foto
 function uploadPhoto(uid,input,name,photoUrl){
 
@@ -336,16 +322,6 @@ function uploadPhoto(uid,input,name,photoUrl){
 
         //Ocultamos loader global
         $(".loader-global").css("display","none");
-
-        /* en caso de tener que guardar la referencia en la base de datos 
-
-        asignar en el top de la funcion junto a otras referencias 
-        var uploadsRef = firebase.database().ref('posts/uploads');
-        
-        //guardamos la referencia en la base de datos
-        uploadsRef.child(key).set(fileRecord).then(resolve, reject);
-        */
-
 
         //Asginamos los valores al post
 
@@ -412,37 +388,30 @@ function uploadPhoto(uid,input,name,photoUrl){
 //Dar Like
 function like(uid,post_id){
   
-  var linkRemove = db.ref().child('posts/')
-  console.log(linkRemove);
-  
   //Referencia a el post solicitado , encargada de decirnos si el usuario ya ha dado like o no
-  var refToPost = db.ref().child('posts/'+post_id).child('post_like_users').orderByChild('post_like_users')
-  .equalTo(uid)
+  var refToPost = db.ref().child('posts/'+post_id).child('post_like_users')
+    .orderByChild('like_user')
+    .equalTo(uid)
     refToPost.once("value")
       .then(function(snapshot) {
 
         //Resultado de la consulta (ha dado like o no)
         var user_result = snapshot.numChildren();
-        var t = snapshot.val();
-        var y = snapshot.key;
-        var tt = snapshot.val().post_like_users;
-        //var j = snapshot.snapshot.post_like_users.val();
-        console.log(y);
-        console.log(tt);
+        //var user = snapshot.val();
+        console.log(user_result);
 
-        //Si el resultado es mayor a 0 , significa que ya dio like
-        if(user_result > 0){
+
+        //Si el resultado es igual a 0 , significa que no ha dado like, insertamos el like
+        if(user_result === 0){
             
-
-          
-        }
-        //Si el resultado es 0 , entonces insertamos el like
-        else{
-          
             var refToPost2 = db.ref().child('posts/'+post_id)
             refToPost2.child("post_like_users").push({
-              post_like_users:uid,
+              like_user:uid,
             });
+          
+        }
+        //Si el resultado es diferente de 0 , entonces ya dio like
+        else{   
 
         }
 

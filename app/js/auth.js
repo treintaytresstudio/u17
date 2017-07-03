@@ -24,7 +24,7 @@ function loginWithFacebook(){
       function() 
       {
         registerUser();
-      }, 6000);
+      }, 10000);
 
 }
 
