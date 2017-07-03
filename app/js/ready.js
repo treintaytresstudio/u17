@@ -1,5 +1,25 @@
 $("document").ready(function(){
 
+        
+        /*working
+        //Ruta al usuario solicitado por medio de userProfileID que recibimos por parametro
+        var rootRef = firebase.database().ref().child("hashtags/")
+
+          rootRef.once('value')
+            .then(function(snapshot) {
+
+                var data = snapshot.val();
+
+                for(hashtag in data){
+                        var id = hashtag;
+                        var caption = data[hashtag].hashtag_caption;
+                        console.log(caption);
+
+                }
+        })
+        */
+     
+
 
         //getProfile(ProfileID);
         var userProfileID = ("getProfile: ", $(".getProfile").attr('id'));
@@ -12,7 +32,7 @@ $("document").ready(function(){
         }
         
 
-        //Verificamos si el usuario está conectado
+    //Verificamos si el usuario está conectado
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
 	    //Obetenemos los datos del usuario actual
@@ -99,13 +119,16 @@ $("document").ready(function(){
                         $("header").addClass("header-profile");
                         //No mostramos el botòn de post
                         $("#cta-post-btn").css("display","none");
+
+                        //Mandamos llamar la funciòn para obtener el perfil
+                        getSettings(uid);
+                        listenSettings(uid)
                 }
 
-                //Mandamos llamar a la funciòn para actualizar usario
+                //Mandamos llamar a la funciòn para actualizar usuario
                 $("#updateUserBtn").click(function(e){
                         e.preventDefault();
-                        
-                        getSettings(uid);
+                        updateUser(uid);
                    
                         
                 });

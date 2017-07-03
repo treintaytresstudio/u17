@@ -16,7 +16,6 @@ function loginWithFacebook(){
     var email = error.email;
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
-    // ...
 
     console.log(errorMessage);
     });
@@ -39,8 +38,8 @@ function logOut(){
 }
 
 
-//Registra el usuario en la base de datos
-function registerUser() { 
+    //Registra el usuario en la base de datos
+    function registerUser() { 
     
     //Obetenemos los datos del usuario actual
     var user = firebase.auth().currentUser;
@@ -75,16 +74,37 @@ function registerUser() {
                     user_name: name,
                     user_profile_picture: photoUrl,
                     user_register_time: time,
-                    user_uname:'',
+                    user_user_name:uid,
                     user_cover_photo:'',
+                    user_age:'',
+                    user_bio:'',
+                    user_country:'',
+                    user_facebook:'',
+                    user_instagram:'',
+                    user_twitter:'',
+                    user_email:email,
+                    user_posts:'',
+                    user_notifications:'',
+                    user_feed:'',
 
                 });
-        }
-    
-        
 
-      });
+            //Creamos la ruta para guardar sus posts
+            db.ref('user_posts/'+uid).push({
+                user_id:uid,
+                posts:'',
+            });
 
+            //Creamos la ruta para guardar sus posts
+            db.ref('user_feed/'+uid).push({
+                user_id:uid,
+                posts:'',
+            });
+
+
+        }  
+
+    });
 
 }
 

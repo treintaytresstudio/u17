@@ -65,7 +65,7 @@
     </header>
     
     <!-- si el usuario, no está logueado -->
-    <header class="headerNoUser">
+    <div class="headerNoUser">
         <div class="logo">
             <h1>Ultra</h1>
         </div>
@@ -76,5 +76,5 @@
                 </li>
             </ul>
         </nav>
-    </header>
+    </div>
     <!-- /headers -->

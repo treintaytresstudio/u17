@@ -124,154 +124,6 @@ main {
 
 /*
 ///////////////////////////////////////
-	MENU
-//////////////////////////////////////
-*/
-.menu {
-  background: white;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  display: none; }
-  .menu .menu-logo {
-    margin-bottom: 25px; }
-    .menu .menu-logo span {
-      color: #5b6775;
-      font-size: 48px;
-      font-weight: bold; }
-  .menu .menu-items span.divider {
-    background: #485360;
-    height: 2px;
-    display: block;
-    margin: 10px 0; }
-  .menu .menu-items ul {
-    list-style: none;
-    margin: 0;
-    padding: 0; }
-    .menu .menu-items ul li:hover a, .menu .menu-items ul li:hover i {
-      color: #5fedb6; }
-    .menu .menu-items ul li {
-      padding: 10px 0;
-      display: flex;
-      align-items: center; }
-      .menu .menu-items ul li i {
-        color: #5b6775;
-        font-size: 28px;
-        width: 30px; }
-      .menu .menu-items ul li a {
-        color: #5b6775;
-        font-size: 19px;
-        font-weight: bold;
-        margin-left: 10px; }
-      .menu .menu-items ul li a:hover {
-        text-decoration: none; }
-      .menu .menu-items ul li a:focus {
-        text-decoration: none; }
-
-/*
-///////////////////////////////////////
-	MENU
-//////////////////////////////////////
-*/
-.menu-fly {
-  background: white;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  left: 0; }
-  .menu-fly .menu-logo {
-    margin-bottom: 25px; }
-    .menu-fly .menu-logo span {
-      color: #5b6775;
-      font-size: 48px;
-      font-weight: bold; }
-  .menu-fly .menu-items span.divider {
-    background: #485360;
-    height: 2px;
-    display: block;
-    margin: 10px 0; }
-  .menu-fly .menu-items ul {
-    list-style: none;
-    margin: 0;
-    padding: 0; }
-    .menu-fly .menu-items ul li:hover a, .menu-fly .menu-items ul li:hover i {
-      color: #5fedb6; }
-    .menu-fly .menu-items ul li {
-      padding: 10px 0;
-      display: flex;
-      align-items: center; }
-      .menu-fly .menu-items ul li i {
-        color: #5b6775;
-        font-size: 28px;
-        width: 30px; }
-      .menu-fly .menu-items ul li a {
-        color: #5b6775;
-        font-size: 19px;
-        font-weight: bold;
-        margin-left: 10px; }
-      .menu-fly .menu-items ul li a:hover {
-        text-decoration: none; }
-      .menu-fly .menu-items ul li a:focus {
-        text-decoration: none; }
-
-/*
-///////////////////////////////////////
-	PROFILE
-//////////////////////////////////////
-*/
-/*
-///////////////////////////////////////
-	MENU
-//////////////////////////////////////
-*/
-.menu {
-  background: white;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-  .menu .menu-logo {
-    margin-bottom: 25px; }
-    .menu .menu-logo span {
-      color: #5b6775;
-      font-size: 48px;
-      font-weight: bold; }
-  .menu .menu-items span.divider {
-    background: #485360;
-    height: 2px;
-    display: block;
-    margin: 10px 0; }
-  .menu .menu-items ul {
-    list-style: none;
-    margin: 0;
-    padding: 0; }
-    .menu .menu-items ul li:hover a, .menu .menu-items ul li:hover i {
-      color: #5fedb6; }
-    .menu .menu-items ul li {
-      padding: 10px 0;
-      display: flex;
-      align-items: center; }
-      .menu .menu-items ul li i {
-        color: #5b6775;
-        font-size: 28px;
-        width: 30px; }
-      .menu .menu-items ul li a {
-        color: #5b6775;
-        font-size: 19px;
-        font-weight: bold;
-        margin-left: 10px; }
-      .menu .menu-items ul li a:hover {
-        text-decoration: none; }
-      .menu .menu-items ul li a:focus {
-        text-decoration: none; }
-
-/*
-///////////////////////////////////////
 	PROFILE
 //////////////////////////////////////
 */
@@ -339,80 +191,6 @@ main {
       .profile .u-info .u-follow a.btn-follow:hover {
         background: #5b6775;
         color: white; }
-
-/*
-///////////////////////////////////////
-	ACTIVITY
-//////////////////////////////////////
-*/
-.activity::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 0px transparent;
-  border-radius: 0px;
-  background-color: transparent; }
-
-.activity::-webkit-scrollbar {
-  width: 0;
-  background-color: transparent; }
-
-.activity::-webkit-scrollbar-thumb {
-  border-radius: 0;
-  -webkit-box-shadow: inset 0 0 0px transparent;
-  background-color: transparent; }
-
-.activity {
-  height: 100vh;
-  padding: 25px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  right: 0;
-  overflow-y: scroll; }
-  .activity .activity-container {
-    width: 100%; }
-  .activity .panel {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    padding: 20px;
-    margin-bottom: 25px;
-    width: 90%;
-    background: white; }
-    .activity .panel .panel-title h4 {
-      font-weight: bold;
-      font-size: 21px; }
-    .activity .panel .hashtag-list {
-      list-style: none;
-      margin: 0;
-      padding: 0; }
-      .activity .panel .hashtag-list li a {
-        text-decoration: none;
-        font-size: 17px;
-        font-weight: lighter;
-        color: #5b6775; }
-    .activity .panel .activity-list {
-      list-style: none;
-      margin: 0;
-      padding: 0; }
-      .activity .panel .activity-list .activity-list-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px; }
-        .activity .panel .activity-list .activity-list-item .activity-list-item-pp {
-          margin-right: 10px; }
-          .activity .panel .activity-list .activity-list-item .activity-list-item-pp img {
-            width: 45px;
-            height: 45px; }
-          .activity .panel .activity-list .activity-list-item .activity-list-item-pp .avatar {
-            border: 2px solid #5fedb6; }
-        .activity .panel .activity-list .activity-list-item .activity-list-item-info span {
-          font-weight: bold;
-          font-size: 18px; }
-        .activity .panel .activity-list .activity-list-item .activity-list-item-info p {
-          font-size: 14px;
-          margin: 0;
-          padding: 0;
-          position: relative;
-          top: -5px; }
 
 /*
 ///////////////////////////////////////
@@ -626,54 +404,6 @@ main {
 
 /*
 ///////////////////////////////////////
-	SEARCH
-//////////////////////////////////////
-*/
-.search-container {
-  padding: 25px 50px; }
-  .search-container input[type="text"] {
-    width: 100%;
-    height: 65px;
-    padding-left: 55px;
-    box-sizing: border-box;
-    background: white;
-    outline: none;
-    font-size: 24px;
-    font-weight: bold;
-    border-radius: 6px;
-    text-transform: uppercase;
-    border: none;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    position: relative; }
-  .search-container i {
-    position: absolute;
-    top: 40px;
-    left: 65px;
-    color: #5fedb6;
-    font-size: 32px; }
-
-/*
-///////////////////////////////////////
-	AUTH
-//////////////////////////////////////
-*/
-.auth-container {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
-.box-auth {
-  width: 500px;
-  height: auto;
-  padding: 20px;
-  background: white;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  border-radius: 6px; }
-
-/*
-///////////////////////////////////////
 	HEADER MENU
 //////////////////////////////////////
 */
@@ -683,7 +413,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: white;
+  background: transparent;
   padding: 0 20px;
   position: fixed;
   top: 0;
@@ -723,11 +453,52 @@ header {
           font-size: 34px !important;
           color: #5b6775; }
 
-.headerUser {
-  display: none; }
-
 .headerNoUser {
+  width: 100%;
+  height: 85px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #5b6775;
+  padding: 0 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: none;
   display: none; }
+  .headerNoUser .logo h1 {
+    color: white; }
+  .headerNoUser nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; }
+    .headerNoUser nav ul .header-user {
+      padding-left: 50px; }
+      .headerNoUser nav ul .header-user img {
+        width: 45px;
+        height: 45px;
+        margin-right: 5px; }
+    .headerNoUser nav ul li {
+      display: flex;
+      align-items: center;
+      padding-right: 10px; }
+      .headerNoUser nav ul li a i:hover {
+        text-decoration: none;
+        color: #5fedb6; }
+      .headerNoUser nav ul li a:hover {
+        text-decoration: none;
+        color: #5fedb6; }
+      .headerNoUser nav ul li a {
+        color: white;
+        font-size: 19px;
+        font-weight: lighter; }
+        .headerNoUser nav ul li a i {
+          font-weight: normal !important;
+          padding-right: 3px;
+          font-size: 34px !important;
+          color: white; }
 
 header.header-profile {
   width: 100%;
@@ -962,12 +733,15 @@ header.header-profile {
       outline: none;
       padding-left: 16px;
       box-sizing: border-box; }
+  .settings legend {
+    margin-top: 40px !important;
+    margin-bottom: 15px !important;
+    display: block;
+    font-weight: bold; }
   .settings .form-group i {
     color: #5fedb6;
     font-size: 32px;
     padding-right: 5px; }
-  .settings .form-group label {
-    font-weight: bold; }
   .settings .form-group input, .settings .form-group textarea {
     border: 2px solid #e7ecf4 !important; }
 
