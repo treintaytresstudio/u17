@@ -70,12 +70,71 @@ $("document").ready(function(){
                         uploadPhoto(uid);
                 });
 
-                
+
+
+                //Manejamos los likes del post
                 $(document).on('click', '.like-action', function() { 
-                        var post_id = $(this).closest( ".post").attr("id");
-                        like(uid,post_id);
-                        
+                    var post_id = $(this).closest( ".post").attr("id");
+                      
+                      //Referencia a el post solicitado , encargada de decirnos si el usuario ya ha dado like o no
+                      var refToPost = db.ref().child('posts/'+post_id).child('post_like_users')
+                        .orderByChild('like_user')
+                        .equalTo(uid)
+                        refToPost.once("value")
+                          .then(function(snapshot) {
+
+                            //Resultado de la consulta (ha dado like o no)
+                            var user_result = snapshot.numChildren();
+                            //var user = snapshot.val();
+                            console.log(user_result);
+
+
+                            //Si el resultado es igual a 0 , significa que no ha dado like, insertamos el like
+                            if(user_result === 0){
+                                
+                                var refToPost2 = db.ref().child('posts/'+post_id)
+                                refToPost2.child("post_like_users").push({
+                                  like_user:uid,
+                                });
+                              
+                            }
+                            else{
+
+                              //Si el resultado es diferente de 0 , entonces ya dio like
+                              var refToPostDelete = db.ref().child('posts/'+post_id+'/post_like_users/')
+                              .orderByChild("like_user")
+                              .equalTo(uid)
+
+                              refToPostDelete.once('value')
+                                .then(function(snapshot){
+
+                                  like = snapshot.val();
+                                  
+                                  for(like_user in like){
+                                    id = like_user;
+                                    
+                                    var deleteLike = db.ref().child('posts/'+post_id+'/post_like_users/'+id)
+                                      deleteLike.remove();
+                                  }
+
+                                });
+
+                            
+
+                            }
+
+                              
+                      });
+
+
+
+
+                      
+                    
+                     
                 });
+
+
 
                 //Cerrar Formulario para crear post desde BG Aactions
                 $(".bg-actions").click(function(e){

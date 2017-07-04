@@ -11,14 +11,15 @@ function getGlobalPosts(){
 
 
     var post_id = snap.key;
+    console.log(post_id);
     var post_caption = snap.child("post_caption").val();
     var post_user_name = snap.child("post_user_name").val();
     var post_user_profile_picture = snap.child("post_user_profile_picture").val();
     var post_image = snap.child("post_image").val();
     var likedBy = snap.child("post_like_users").val();
 
-    console.log(likedBy);
-  
+
+    //Recorremos el objeto para saber si el usuario activo, ha dado like
     for(user in likedBy){
       //Asignamos lo valores del objeto
       var user_name = likedBy[user].like_user;
@@ -26,13 +27,13 @@ function getGlobalPosts(){
       //Si el usuario ya dio like, entonces pintamos de rojo el corazón
       if(user_name === uid){
         $(document).ready(function(){
-          $(".like-icon").css("color","red");
+          $("#"+post_id).find(".like-icon").css("color","red");
         })
         
       }
 
     }
-
+  
     //Conseguimos el total de likes
     var total_likes = snap.child("post_like_users").numChildren();
 
@@ -107,7 +108,8 @@ function listenGlobalPosts(uid){
     var likedBy = snap.child("post_like_users").val();
 
     console.log(likedBy);
-    
+
+     //Recorremos el objeto para saber si el usuario activo, ha dado like
     for(user in likedBy){
       //Asignamos lo valores del objeto
       var user_name = likedBy[user].like_user;
@@ -115,13 +117,14 @@ function listenGlobalPosts(uid){
       //Si el usuario ya dio like, entonces pintamos de rojo el corazón
       if(user_name === uid){
         $(document).ready(function(){
-          $(".like-icon").css("color","red");
+          $("#"+post_id).find(".like-icon").css("color","red");
         })
         
       }
 
     }
-
+    
+    
     //Conseguimos el total de likes
     var total_likes = snap.child("post_like_users").numChildren();
 
@@ -383,41 +386,6 @@ function uploadPhoto(uid,input,name,photoUrl){
         });  
       });
  
-}
-
-//Dar Like
-function like(uid,post_id){
-  
-  //Referencia a el post solicitado , encargada de decirnos si el usuario ya ha dado like o no
-  var refToPost = db.ref().child('posts/'+post_id).child('post_like_users')
-    .orderByChild('like_user')
-    .equalTo(uid)
-    refToPost.once("value")
-      .then(function(snapshot) {
-
-        //Resultado de la consulta (ha dado like o no)
-        var user_result = snapshot.numChildren();
-        //var user = snapshot.val();
-        console.log(user_result);
-
-
-        //Si el resultado es igual a 0 , significa que no ha dado like, insertamos el like
-        if(user_result === 0){
-            
-            var refToPost2 = db.ref().child('posts/'+post_id)
-            refToPost2.child("post_like_users").push({
-              like_user:uid,
-            });
-          
-        }
-        //Si el resultado es diferente de 0 , entonces ya dio like
-        else{   
-
-        }
-
-          
-  });
-  
 }
 
 
