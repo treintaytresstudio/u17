@@ -169,6 +169,9 @@ main{
 #settingsBtn{
 	display: none;
 }
+#followingBtn{
+	display: none;
+}
 
 .profile{
 	background: url(http://68.media.tumblr.com/d30666c2b15d952d15313ec2904a0752/tumblr_ngjgisRbe61sh3sfao1_1280.jpg);
@@ -979,24 +982,35 @@ $duration: 1.4s;
     }
 
     .profile-top-cta{
-    	margin: 10px 0 30px;
-
-
-    	a{
-    		color: $white;
-    		background: $accent;
-    		border-radius: 10px;
-    		padding: 10px 45px;
-    		font-size: 19px;
-    		font-weight: bold;
-
-    	}
+    	height: 50px;
+    	margin:10px 0 20px;
+    	
     }
 
   }
 
 }
 
+#followBtn{
+	background: $accent !important;
+	border:none !important;
+	cursor: pointer;
+}
+#followBtn:hover{
+	background: $white !important;
+	color: $accent !important;
+}
+
+#followingBtn{
+	color: $accent !important;
+	border-color:$accent !important;
+	cursor: pointer;
+}
+#followingBtn:hover{
+	color: $white !important;
+	border-color:$white !important;
+	background: transparent !important;
+}
 
 /*
 ///////////////////////////////////////

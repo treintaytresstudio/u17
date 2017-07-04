@@ -38,13 +38,11 @@
 
                             <!-- profile cta -->
                             <div class="profile-top-cta">
-                                <a id="followBtn" href="#" class="btn">
-                                    Follow
-                                </a>
-                                <a id="settingsBtn" href="#" class="btn">
-                                    Settings
-                                </a>
+                                <button type="button" class="btn btn-primary btn-lg" id="followBtn">Follow</button>
 
+                                <button type="button" class="btn btn-primary btn-lg" id="settingsBtn">Settings</button>
+
+                                <button type="button" class="btn btn-outline-secondary btn-lg" id="followingBtn">Following</button>
                             </div>
                             <!-- /profile cta -->
 

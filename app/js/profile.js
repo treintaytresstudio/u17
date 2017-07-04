@@ -1,15 +1,46 @@
 //Get Profile
 function getProfile(userProfileID,uid){
 
-  if(userProfileID === uid){
-    $("#settingsBtn").css("display", "inline-block");
-  }else{
-    $("#followBtn").css("display", "inline-block");
-  }
-
   //Ruta al usuario solicitado por medio de userProfileID que recibimos por parametro
   var rootRef = firebase.database().ref().child("users/").orderByChild("user_id").equalTo(userProfileID)
 
+
+  //Si el perfil del usuario es igual al usuario actual, entonces mostramos el botón de settings
+  //de lo contrario mostramos el botón de follow
+  if(userProfileID === uid){
+    $("#settingsBtn").css("display", "block");
+  }else{
+    rootRef.once('value')
+      .then(function(snapshot){
+
+        var users = snapshot.val();
+        for(user in users){
+
+          //id asignado por firebase 
+          var id = user;
+          //Registros de followers del usuario
+          var user_followers = users[user].user_followers;
+          
+          //Si el resultado de user_followers es indefinido, entonces no lo està siguiendo
+          if(user_followers === undefined){
+            //Mostramos el botón de follow
+            $("#followBtn").css("display", "block");
+          }
+          //Si existe algún registro en user_followers, entonces el usuario ya lo está siguiendo
+          else{
+            //Mostramos el botón de following
+            $("#followingBtn").css("display", "block");
+          }
+        
+        }
+
+
+      });
+
+      
+  }
+
+  
   //Eejecutamos el query
   rootRef.once('value')
     .then(function(snapshot) {
@@ -94,4 +125,102 @@ function listenProfile(userProfileID){
 
     
     });
+}
+
+
+//Follow function
+function follow(uid,userProfileID){
+        //Ruta al usuario 
+        var rootRef = firebase.database().ref().child("users/").orderByChild("user_id")
+        .equalTo(userProfileID)
+
+          //Sacamos los valores del usuario
+          rootRef.once('value')
+            .then(function(snapshot) {
+
+                var users = snapshot.val();
+                for(user in users){
+
+                  //id asignado por firebase 
+                  var id = user;
+                }
+
+                //Ruta para agregar follower
+                var user = firebase.database().ref().child("users/"+id).child("user_followers")
+                
+                //Agregamos follower
+                user.push({
+                  user_id:uid,
+                });
+               
+        })
+
+        //Escondemos el botón de follow
+        $("#followBtn").hide();
+        //Mostramos el botón de following
+        $("#followingBtn").show();
+
+
+        
+}
+
+
+//Unfollow function
+function unfollow(uid, userProfileID){
+
+  //Ruta al perfil del usuario
+  var refToDeleteFollower = db.ref().child('users/')
+  .orderByChild("user_id")
+  .equalTo(userProfileID)
+
+
+  refToDeleteFollower.once('value')
+    .then(function(snapshot){
+
+      users = snapshot.val();
+      
+      //Recorremos los valores del objeto
+      for(user in users){
+        //Id Firebase
+        id = user;
+
+        //Ruta a los followers del usuario, buscamos un registro que concuerde con el uid del usuario activo
+        var follower = db.ref().child('users/'+id).child('user_followers')
+        .orderByChild('user_id')
+        .equalTo(uid)
+
+
+          follower.once('value')
+            .then(function(snapshot){
+              route = snapshot.val();
+              //Recorremos los resultados del objeto
+              for(route_follower in route){
+
+                //Id Firebase
+                id_follower = route_follower;
+
+                //Ruta para borrar el registro del follower
+                var followerRoute = db.ref().child('users/'+id)
+                .child('/user_followers/'+id_follower)
+
+                //Borramos el registro
+                followerRoute.remove();
+              }
+
+            });
+            
+          
+
+          
+      }
+
+    });
+
+    //Escondemos el boton de following
+    $("#followingBtn").hide();
+    //Mostramos el botón de follow
+    $("#followBtn").show();
+    
+
+
 }

@@ -11,7 +11,6 @@ function getGlobalPosts(){
 
 
     var post_id = snap.key;
-    console.log(post_id);
     var post_caption = snap.child("post_caption").val();
     var post_user_name = snap.child("post_user_name").val();
     var post_user_profile_picture = snap.child("post_user_profile_picture").val();

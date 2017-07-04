@@ -37,27 +37,26 @@ $("document").ready(function(){
 
                 //Abrimos formulario para crear post
                 $("#cta-post-btn").click(function(){
-                        $(".bg-actions").css("display","block");
-                        $("#post-form-container").toggle();
-                        $("#cta-post-btn").css("display","none");
+                    $(".bg-actions").css("display","block");
+                    $("#post-form-container").toggle();
+                    $("#cta-post-btn").css("display","none");
                 });
 
                 //Mandamos llamar a la funciòn para crear post
                 $("#createPostBtn").click(function(e){
-                        input = $("#files-input")[0].files[0];
-                        e.preventDefault();
-                        //createPost(uid,photoUrl,name,input);
-                        uploadPhoto(uid,input,name,photoUrl);
+                    input = $("#files-input")[0].files[0];
+                    e.preventDefault();
+                    //createPost(uid,photoUrl,name,input);
+                    uploadPhoto(uid,input,name,photoUrl);
                    
                         
                 });
 
                 //Mandamos llamar a la funciòn para subir foto
                 $("#upload-photo-btn").click(function(e){
-                        e.preventDefault();
-                        uploadPhoto(uid);
+                    e.preventDefault();
+                    uploadPhoto(uid);
                 });
-
 
 
                 //Manejamos los likes del post
@@ -107,18 +106,11 @@ $("document").ready(function(){
 
                                 });
 
-                            
 
                             }
 
                               
-                      });
-
-
-
-
-                      
-                    
+                      });    
                      
                 });
 
@@ -146,6 +138,17 @@ $("document").ready(function(){
                         listenProfile(userProfileID, uid);
                         
                 }
+
+                //Mandamos llamar la funcòn de follow
+                $("#followBtn").click(function(){
+                    follow(uid,userProfileID);
+                });
+
+                //Mandamos llamar la función unfollow
+                $("#followingBtn").click(function(e){
+                    e.preventDefault();
+                    unfollow(uid,userProfileID);
+                });
 
 
                 //Saber si estamos en la secciòn settings
