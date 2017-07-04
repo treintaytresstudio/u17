@@ -1,5 +1,11 @@
 //Get Profile
-function getProfile(userProfileID){
+function getProfile(userProfileID,uid){
+
+  if(userProfileID === uid){
+    $("#settingsBtn").css("display", "inline-block");
+  }else{
+    $("#followBtn").css("display", "inline-block");
+  }
 
   //Ruta al usuario solicitado por medio de userProfileID que recibimos por parametro
   var rootRef = firebase.database().ref().child("users/").orderByChild("user_id").equalTo(userProfileID)

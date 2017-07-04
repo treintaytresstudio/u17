@@ -44,7 +44,7 @@
                     </a> 
                 </li>
                 <li> 
-                    <a>
+                    <a href="search.php">
                         <i class="material-icons">search</i>
                     </a> 
                 </li>

@@ -38,9 +38,13 @@
 
                             <!-- profile cta -->
                             <div class="profile-top-cta">
-                                <a href="#" class="btn">
+                                <a id="followBtn" href="#" class="btn">
                                     Follow
                                 </a>
+                                <a id="settingsBtn" href="#" class="btn">
+                                    Settings
+                                </a>
+
                             </div>
                             <!-- /profile cta -->
 

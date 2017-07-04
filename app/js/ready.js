@@ -1,16 +1,4 @@
-$("document").ready(function(){
-
-
-    //getProfile(ProfileID);
-    var userProfileID = ("getProfile: ", $(".getProfile").attr('id'));
-    //Si estamos en el perfil, lo mandamos llamar
-    if(userProfileID){
-            $("header").hide();
-            getProfile(userProfileID);
-            listenProfile(userProfileID);
-            
-    }
-    
+$("document").ready(function(){    
 
     //Verificamos si el usuario está conectado
 	firebase.auth().onAuthStateChanged(function(user) {
@@ -149,6 +137,16 @@ $("document").ready(function(){
                         $("#cta-post-btn").css("display","block");
                 });
 
+                //getProfile(ProfileID);
+                var userProfileID = ("getProfile: ", $(".getProfile").attr('id'));
+                //Si estamos en el perfil, lo mandamos llamar
+                if(userProfileID){
+                        $("header").hide();
+                        getProfile(userProfileID, uid);
+                        listenProfile(userProfileID, uid);
+                        
+                }
+
 
                 //Saber si estamos en la secciòn settings
                 var userSettings = ("userIsOnSettings: ", $("#userIsOnSettings").attr('id'));
@@ -163,6 +161,19 @@ $("document").ready(function(){
                         getSettings(uid);
                         listenSettings(uid)
                 }
+
+
+                //Saber si estamos en la secciòn search
+                var userSearch = ("userIsOnSearch: ", $("#userIsOnSearch").attr('id'));
+                //Si estamos en settings
+                if(userSearch){
+                        //No mostramos el botòn de post
+                        $("#cta-post-btn").css("display","none");
+                        //Mandamos llamar la funciòn para obtener el perfil
+                        getSearch();
+                }
+
+
 
                 //Mandamos llamar a la funciòn para actualizar usuario
                 $("#updateUserBtn").click(function(e){
