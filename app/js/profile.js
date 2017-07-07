@@ -130,7 +130,10 @@ function listenProfile(userProfileID){
 
 //Follow function
 function follow(uid,userProfileID){
-        //Ruta al usuario 
+
+        //FOLLOWER
+        
+        //Ruta al usuario a to follow
         var rootRef = firebase.database().ref().child("users/").orderByChild("user_id")
         .equalTo(userProfileID)
 
@@ -155,6 +158,33 @@ function follow(uid,userProfileID){
                
         })
 
+        //FOLLOWING
+
+        //Ruta al usuario to following
+        var rootRef = firebase.database().ref().child("users/").orderByChild("user_id")
+        .equalTo(uid)
+
+          //Sacamos los valores del usuario
+          rootRef.once('value')
+            .then(function(snapshot) {
+
+                var users = snapshot.val();
+                for(user in users){
+
+                  //id asignado por firebase 
+                  var id = user;
+                }
+
+                //Ruta para agregar follower
+                var user = firebase.database().ref().child("users/"+id).child("user_following")
+                
+                //Agregamos follower
+                user.push({
+                  user_id:userProfileID,
+                });
+               
+        })
+
         //Escondemos el botón de follow
         $("#followBtn").hide();
         //Mostramos el botón de following
@@ -167,6 +197,8 @@ function follow(uid,userProfileID){
 
 //Unfollow function
 function unfollow(uid, userProfileID){
+
+  //FOLLOWER
 
   //Ruta al perfil del usuario
   var refToDeleteFollower = db.ref().child('users/')
@@ -208,13 +240,58 @@ function unfollow(uid, userProfileID){
               }
 
             });
-            
-          
-
           
       }
 
     });
+
+
+    //FOLLOWING
+
+    //Ruta al perfil del usuario
+    var refToDeleteFollowing = db.ref().child('users/')
+    .orderByChild("user_id")
+    .equalTo(uid)
+
+
+    refToDeleteFollowing.once('value')
+      .then(function(snapshot){
+
+        users = snapshot.val();
+        
+        //Recorremos los valores del objeto
+        for(user in users){
+          //Id Firebase
+          id = user;
+
+          //Ruta a los followers del usuario, buscamos un registro que concuerde con el uid del usuario activo
+          var following = db.ref().child('users/'+id).child('user_following')
+          .orderByChild('user_id')
+          .equalTo(userProfileID)
+
+
+            following.once('value')
+              .then(function(snapshot){
+                route = snapshot.val();
+                //Recorremos los resultados del objeto
+                for(route_following in route){
+
+                  //Id Firebase
+                  id_following = route_following;
+
+                  //Ruta para borrar el registro del follower
+                  var followingRoute = db.ref().child('users/'+id)
+                  .child('/user_following/'+id_following)
+
+                  //Borramos el registro
+                  followingRoute.remove();
+                }
+
+              });
+            
+        }
+
+      });
 
     //Escondemos el boton de following
     $("#followingBtn").hide();

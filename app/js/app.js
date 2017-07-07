@@ -41,7 +41,9 @@ function getGlobalPosts(){
     var html = `
         <!-- post -->
         <div class="post" id="${post_id}">
+          <a href="post.php?id=${post_id}">
             <div class="post-img" style="background: url(${post_image});"></div>
+          </a>
             <div class="post-content">
                 <div class="post-content-top">
                     <div class="post-content-pp">
@@ -130,7 +132,9 @@ function listenGlobalPosts(uid){
 
 
     var html = `
-            <div class="post-img" style="background: url(${post_image});"></div>
+            <a href="post.php?id=${post_id}">
+              <div class="post-img" style="background: url(${post_image});"></div>
+            </a>
             <div class="post-content">
                 <div class="post-content-top">
                     <div class="post-content-pp">

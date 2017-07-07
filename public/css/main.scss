@@ -558,6 +558,18 @@ main{
 }
 
 
+.post-open{
+	background: $white;
+	border-radius:6px;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.post-o-image{
+	height: 600px;
+	background-size: cover !important;
+	background-position: center !important;
+}
+
 /*
 ///////////////////////////////////////
 	FEED
@@ -1010,6 +1022,15 @@ $duration: 1.4s;
 	color: $white !important;
 	border-color:$white !important;
 	background: transparent !important;
+}
+#settingsBtn{
+	background: $accent !important;
+	border:none !important;
+	cursor: pointer;
+}
+#settingsBtn:hover{
+	background: $white !important;
+	color: $accent !important;
 }
 
 /*

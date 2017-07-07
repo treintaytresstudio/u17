@@ -397,6 +397,16 @@ main {
       color: white;
       font-size: 34px; }
 
+.post-open {
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
+
+.post-o-image {
+  height: 600px;
+  background-size: cover !important;
+  background-position: center !important; }
+
 /*
 ///////////////////////////////////////
 	FEED
@@ -714,6 +724,15 @@ header.header-profile {
   color: white !important;
   border-color: white !important;
   background: transparent !important; }
+
+#settingsBtn {
+  background: #5fedb6 !important;
+  border: none !important;
+  cursor: pointer; }
+
+#settingsBtn:hover {
+  background: white !important;
+  color: #5fedb6 !important; }
 
 /*
 ///////////////////////////////////////

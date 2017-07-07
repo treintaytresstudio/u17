@@ -46,5 +46,6 @@
     <script src="app/js/profile.js"></script>
     <script src="app/js/settings.js"></script>
     <script src="app/js/search.js"></script>
+    <script src="app/js/post.js"></script>
 
 </html>

@@ -129,6 +129,16 @@ $("document").ready(function(){
                         $("#cta-post-btn").css("display","block");
                 });
 
+                //getPost(PostID);
+                var postID = ("getPost: ", $(".getPost").attr('id'));
+                //Mandamos llamar los datos del post
+                if(postID){
+                        getPostOpen(postID,uid);
+                        listenPostOpen(postID,uid);
+                        
+                }
+
+
                 //getProfile(ProfileID);
                 var userProfileID = ("getProfile: ", $(".getProfile").attr('id'));
                 //Si estamos en el perfil, lo mandamos llamar
