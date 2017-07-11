@@ -1,5 +1,6 @@
 //Login con Facebook
 function loginWithFacebook(){
+
     var provider = new firebase.auth.FacebookAuthProvider();
 
     firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -17,8 +18,11 @@ function loginWithFacebook(){
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
 
-    console.log(errorMessage);
+
+
+    
     });
+
 
     setTimeout(
       function() 

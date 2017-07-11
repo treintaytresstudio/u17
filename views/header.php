@@ -19,62 +19,14 @@
     <link rel="stylesheet" href="public/css/main.css">
     
     <body>
-
-    <!-- Loader -->
-    <div class="loader-global">
-        <svg class="spinner" width="45px" height="45px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-           <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
-        </svg>
-    </div>
-
+    
     <!-- BG Actions -->
     <div class="bg-actions"></div>
-
-    <!-- headers -->
-    <!-- si el usuario, está logueado -->
-    <header class="headerUser">
-        <div class="logo">
-            <h1 class="logo-font">Ultra</h1>
-        </div>
-        <nav>
-            <ul>
-                <li> 
-                    <a href="index.php">
-                        <i class="material-icons">home</i>
-                    </a> 
-                </li>
-                <li> 
-                    <a href="search.php">
-                        <i class="material-icons">search</i>
-                    </a> 
-                </li>
-                <li> 
-                    <a>
-                        <i class="material-icons">notifications</i>
-                    </a> 
-                </li>
-                <li class="header-user"> 
-                    <a class="linkMyProfile" id="goProfile" href="profile.php">
-                        <img class="avatar userPP" src="" alt="">
-                        <span class="userName"></span>
-                    </a> 
-                    <a href="#" onclick="logOut();" class="btn">Log out</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
     
-    <!-- si el usuario, no está logueado -->
-    <div class="headerNoUser">
-        <div class="logo">
-            <h1>Ultra</h1>
-        </div>
-        <nav>
-            <ul>
-                <li class="header-user"> 
-                    <a href="#" onclick="loginWithFacebook();" class="btn">Log in with Facebook</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <!-- /headers -->
+    <!-- login -->
+    <?php include 'login.php' ?>
+
+    <!-- menu -->
+    <?php include 'menu.php' ?>
+
+    

@@ -3,6 +3,9 @@ $("document").ready(function(){
     //Verificamos si el usuario está conectado
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
+        //Cerramos login
+        $(".login").css("display","none");
+        
 	    //Obetenemos los datos del usuario actual
 	    var user = firebase.auth().currentUser;
 	    var name, email, photoUrl, uid;
@@ -11,6 +14,10 @@ $("document").ready(function(){
                 photoUrl = user.photoURL;
                 uid = user.uid;
 
+                name_menu = user.displayName.split(' ')[0];
+
+                //Nombre del usuario para el menu
+                $(".userNameMenu").html(name_menu);
 
                 //Nombre del usuario
                 $(".userName").html(name);
@@ -221,11 +228,13 @@ $("document").ready(function(){
 
 
 	  } else {
-	        $(".headerNoUser").css("display", "flex");
-                $(".headerUser").css("display" ,"none");
+            $(".headerUser").hide();
+	        $(".login").css("display","block");
 	  }
 
 	});
+
+
 
 	
 });

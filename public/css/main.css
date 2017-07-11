@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Leckerli+One");
 body {
   overflow-x: hidden;
-  background: rgba(223, 230, 244, 0.2); }
+  background-color: white; }
 
 main {
   width: 100%;
@@ -52,10 +52,10 @@ main {
 
 .hashtag {
   font-weight: bold;
-  color: #5fedb6; }
+  color: #4c81ee; }
 
 .btn-auth {
-  background: #5fedb6;
+  background: #4c81ee;
   color: #5b6775;
   font-weight: bold; }
 
@@ -194,7 +194,7 @@ main {
         padding: 10px 50px;
         border-radius: 50px;
         color: #5b6775;
-        background: #5fedb6;
+        background: #4c81ee;
         font-size: 18px;
         font-weight: bold; }
       .profile .u-info .u-follow a.btn-follow:hover {
@@ -228,7 +228,7 @@ main {
     .post-form form input[type="text"] {
       width: 100% !important;
       outline: none;
-      border: 2px solid #5fedb6;
+      border: 2px solid #4c81ee;
       border-radius: 6px;
       height: 55px;
       background: transparent;
@@ -259,7 +259,7 @@ main {
       border: none;
       height: 45px;
       width: 120px;
-      background: #5fedb6;
+      background: #4c81ee;
       border-radius: 6px;
       display: flex;
       justify-content: center;
@@ -269,7 +269,7 @@ main {
       font-size: 18px;
       font-weight: bold; }
     .post-form form .post-form-submit:hover button {
-      background: #5fedb6; }
+      background: #4c81ee; }
       .post-form form .post-form-submit:hover button i {
         color: white; }
 
@@ -324,7 +324,7 @@ main {
             color: #e7ecf4;
             cursor: pointer; }
           .post .post-content .post-content-actions ul li i.like-active {
-            color: #5fedb6; }
+            color: #4c81ee; }
     .post .post-content .post-content-caption {
       margin: 5px 0;
       height: auto;
@@ -349,7 +349,7 @@ main {
         border: 1px solid #e7ecf4;
         outline: none; }
       .post .post-content .post-content-comment-box button {
-        background: #5fedb6;
+        background: #4c81ee;
         font-weight: bold; }
     .post .post-content .post-content-comments .post-content-comment-item {
       margin: 10px 5px; }
@@ -383,7 +383,7 @@ main {
   cursor: pointer;
   display: none; }
   .cta-post a {
-    background: #5fedb6;
+    background: #4c81ee;
     width: 75px;
     height: 75px;
     color: white;
@@ -426,7 +426,7 @@ main {
 	HEADER MENU
 //////////////////////////////////////
 */
-header {
+header.menu {
   width: 100%;
   height: 85px;
   display: flex;
@@ -437,87 +437,78 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
-  box-shadow: 0 10px 20px 0 #dfe6f4; }
-  header .logo h1 {
+  z-index: 1;
+  border-bottom: 2px solid #e7ecf4; }
+  header.menu .menu-left {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    header.menu .menu-left .menu-search {
+      margin-left: 50px;
+      position: relative; }
+      header.menu .menu-left .menu-search input {
+        width: 325px;
+        height: 40px;
+        border-radius: 18px;
+        background: #e7ecf4;
+        border: none;
+        outline: none;
+        padding-left: 20px;
+        box-sizing: border-box; }
+      header.menu .menu-left .menu-search input::-webkit-input-placeholder {
+        /* Chrome/Opera/Safari */
+        color: #5b6775; }
+      header.menu .menu-left .menu-search input::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #5b6775; }
+      header.menu .menu-left .menu-search input:-ms-input-placeholder {
+        /* IE 10+ */
+        color: #5b6775; }
+      header.menu .menu-left .menu-search input:-moz-placeholder {
+        /* Firefox 18- */
+        color: #5b6775; }
+      header.menu .menu-left .menu-search i {
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        color: #5b6775; }
+  header.menu .menu-logo h1 {
     color: #5b6775; }
-  header nav ul {
+  header.menu .menu-logo img {
+    width: 100px; }
+  header.menu nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex; }
-    header nav ul .header-user {
-      padding-left: 50px; }
-      header nav ul .header-user img {
+    header.menu nav ul .header-user {
+      margin-left: 35px; }
+      header.menu nav ul .header-user img {
         width: 45px;
         height: 45px;
         margin-right: 5px; }
-    header nav ul li {
+      header.menu nav ul .header-user span {
+        font-weight: bold;
+        font-size: 15px; }
+    header.menu nav ul li {
       display: flex;
       align-items: center;
       padding-right: 10px; }
-      header nav ul li a i:hover {
+      header.menu nav ul li a i:hover {
         text-decoration: none;
-        color: #5fedb6; }
-      header nav ul li a:hover {
+        color: #4c81ee; }
+      header.menu nav ul li a:hover {
         text-decoration: none;
-        color: #5fedb6; }
-      header nav ul li a {
+        color: #4c81ee; }
+      header.menu nav ul li a {
         color: #5b6775;
         font-size: 19px;
         font-weight: lighter; }
-        header nav ul li a i {
+        header.menu nav ul li a i {
           font-weight: normal !important;
           padding-right: 3px;
-          font-size: 34px !important;
+          font-size: 28px !important;
           color: #5b6775; }
-
-.headerNoUser {
-  width: 100%;
-  height: 85px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #5b6775;
-  padding: 0 20px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  box-shadow: none;
-  display: none; }
-  .headerNoUser .logo h1 {
-    color: white; }
-  .headerNoUser nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex; }
-    .headerNoUser nav ul .header-user {
-      padding-left: 50px; }
-      .headerNoUser nav ul .header-user img {
-        width: 45px;
-        height: 45px;
-        margin-right: 5px; }
-    .headerNoUser nav ul li {
-      display: flex;
-      align-items: center;
-      padding-right: 10px; }
-      .headerNoUser nav ul li a i:hover {
-        text-decoration: none;
-        color: #5fedb6; }
-      .headerNoUser nav ul li a:hover {
-        text-decoration: none;
-        color: #5fedb6; }
-      .headerNoUser nav ul li a {
-        color: white;
-        font-size: 19px;
-        font-weight: lighter; }
-        .headerNoUser nav ul li a i {
-          font-weight: normal !important;
-          padding-right: 3px;
-          font-size: 34px !important;
-          color: white; }
 
 header.header-profile {
   width: 100%;
@@ -551,10 +542,10 @@ header.header-profile {
       padding-right: 10px; }
       header.header-profile nav ul li a i:hover {
         text-decoration: none;
-        color: #5fedb6; }
+        color: #4c81ee; }
       header.header-profile nav ul li a:hover {
         text-decoration: none;
-        color: #5fedb6; }
+        color: #4c81ee; }
       header.header-profile nav ul li a {
         color: white;
         font-size: 19px;
@@ -617,7 +608,7 @@ header.header-profile {
     stroke-dashoffset: 187;
     transform: rotate(450deg); } }
 .file-upload:hover i {
-  color: #5fedb6; }
+  color: #4c81ee; }
 
 .file-upload {
   height: 65px;
@@ -707,17 +698,17 @@ header.header-profile {
       margin: 10px 0 20px; }
 
 #followBtn {
-  background: #5fedb6 !important;
+  background: #4c81ee !important;
   border: none !important;
   cursor: pointer; }
 
 #followBtn:hover {
   background: white !important;
-  color: #5fedb6 !important; }
+  color: #4c81ee !important; }
 
 #followingBtn {
-  color: #5fedb6 !important;
-  border-color: #5fedb6 !important;
+  color: #4c81ee !important;
+  border-color: #4c81ee !important;
   cursor: pointer; }
 
 #followingBtn:hover {
@@ -726,13 +717,13 @@ header.header-profile {
   background: transparent !important; }
 
 #settingsBtn {
-  background: #5fedb6 !important;
+  background: #4c81ee !important;
   border: none !important;
   cursor: pointer; }
 
 #settingsBtn:hover {
   background: white !important;
-  color: #5fedb6 !important; }
+  color: #4c81ee !important; }
 
 /*
 ///////////////////////////////////////
@@ -787,10 +778,83 @@ header.header-profile {
     display: block;
     font-weight: bold; }
   .settings .form-group i {
-    color: #5fedb6;
+    color: #4c81ee;
     font-size: 32px;
     padding-right: 5px; }
   .settings .form-group input, .settings .form-group textarea {
     border: 2px solid #e7ecf4 !important; }
+
+/*
+///////////////////////////////////////
+  LOGIN
+//////////////////////////////////////
+*/
+.login {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white; }
+  .login .login-hero {
+    height: 100vh;
+    background: url(../img/login-hero.jpg);
+    background-size: cover;
+    background-position: center; }
+  .login .auth-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .login .auth {
+    width: 375px; }
+    .login .auth .auth-logo {
+      width: 200px;
+      margin-bottom: 25px; }
+      .login .auth .auth-logo img {
+        width: 100%; }
+    .login .auth .auth-item {
+      margin-bottom: 15px;
+      height: auto;
+      overflow: hidden; }
+      .login .auth .auth-item label {
+        font-size: 16px;
+        color: #5b6775;
+        font-weight: bold; }
+      .login .auth .auth-item input {
+        width: 100%;
+        height: 45px;
+        box-sizing: border-box;
+        border-radius: 6px;
+        padding-left: 20px;
+        background: white;
+        display: block;
+        border: 2px solid #4c81ee;
+        outline: none; }
+    .login .auth .auth-btn {
+      background: #4c81ee important; }
+    .login .auth .auth-create {
+      text-align: center; }
+      .login .auth .auth-create a {
+        padding-top: 5px;
+        display: block; }
+    .login .auth .auth-facebook {
+      margin: px 0; }
+      .login .auth .auth-facebook .or {
+        display: block;
+        width: 100%;
+        padding: 10px 0;
+        height: auto;
+        overflow: hidden;
+        text-align: center; }
+      .login .auth .auth-facebook .btn-facebook {
+        background: #3B5998;
+        border: none; }
+    .login .auth .btn {
+      height: 45px;
+      line-height: 1.75; }
 
 /*# sourceMappingURL=main.css.map */
