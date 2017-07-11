@@ -26,18 +26,21 @@ main {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out; }
 
+a:hover, button:hover, a:active {
+  text-decoration: none !important; }
+
 .logo-font {
   font-family: "Leckerli One", cursive !important; }
 
 .bg-actions {
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%);
+  background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
   opacity: 0.75;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 300000;
+  z-index: 5;
   display: none; }
 
 .bg-magic {
@@ -213,8 +216,8 @@ main {
   left: 0;
   top: 0;
   margin: auto;
-  width: 450px;
-  height: 50vh;
+  width: 500px;
+  height: 42vh;
   background: white;
   z-index: 500000000;
   display: none;
@@ -222,6 +225,12 @@ main {
   padding: 40px 20px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   border-radius: 6px; }
+  .post-form .post-form-header {
+    margin-bottom: 15px; }
+    .post-form .post-form-header .userPP {
+      width: 45px;
+      height: 45px;
+      margin-right: 10px; }
   .post-form form {
     width: 100%;
     padding: 0; }
@@ -230,13 +239,15 @@ main {
       outline: none;
       border: 2px solid #4c81ee;
       border-radius: 6px;
-      height: 55px;
+      height: 50px;
       background: transparent;
       box-sizing: border-box;
       color: #5b6775;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: lighter;
-      padding-left: 20px; }
+      padding-left: 20px;
+      display: block;
+      margin-bottom: 15px; }
     .post-form form input[type="text"]::-webkit-input-placeholder {
       /* Chrome/Opera/Safari */
       color: #5b6775; }
@@ -249,6 +260,15 @@ main {
     .post-form form input[type="text"]:-moz-placeholder {
       /* Firefox 18- */
       color: #5b6775; }
+    .post-form form .post-form-image {
+      margin-bottom: 25px; }
+      .post-form form .post-form-image input {
+        font-size: 14px;
+        background: white; }
+      .post-form form .post-form-image i {
+        color: #4c81ee;
+        font-size: 32px;
+        padding-right: 5px; }
     .post-form form .post-form-caption {
       width: 100%;
       height: 65px; }
@@ -426,7 +446,7 @@ main {
 	HEADER MENU
 //////////////////////////////////////
 */
-header.menu {
+.menu {
   width: 100%;
   height: 85px;
   display: flex;
@@ -437,16 +457,15 @@ header.menu {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
-  border-bottom: 2px solid #e7ecf4; }
-  header.menu .menu-left {
+  z-index: 1; }
+  .menu .menu-left {
     display: flex;
     align-items: center;
     justify-content: center; }
-    header.menu .menu-left .menu-search {
+    .menu .menu-left .menu-search {
       margin-left: 50px;
       position: relative; }
-      header.menu .menu-left .menu-search input {
+      .menu .menu-left .menu-search input {
         width: 325px;
         height: 40px;
         border-radius: 18px;
@@ -455,56 +474,81 @@ header.menu {
         outline: none;
         padding-left: 20px;
         box-sizing: border-box; }
-      header.menu .menu-left .menu-search input::-webkit-input-placeholder {
+      .menu .menu-left .menu-search input::-webkit-input-placeholder {
         /* Chrome/Opera/Safari */
         color: #5b6775; }
-      header.menu .menu-left .menu-search input::-moz-placeholder {
+      .menu .menu-left .menu-search input::-moz-placeholder {
         /* Firefox 19+ */
         color: #5b6775; }
-      header.menu .menu-left .menu-search input:-ms-input-placeholder {
+      .menu .menu-left .menu-search input:-ms-input-placeholder {
         /* IE 10+ */
         color: #5b6775; }
-      header.menu .menu-left .menu-search input:-moz-placeholder {
+      .menu .menu-left .menu-search input:-moz-placeholder {
         /* Firefox 18- */
         color: #5b6775; }
-      header.menu .menu-left .menu-search i {
+      .menu .menu-left .menu-search i {
         position: absolute;
         top: 8px;
         right: 10px;
         color: #5b6775; }
-  header.menu .menu-logo h1 {
+  .menu .menu-logo h1 {
     color: #5b6775; }
-  header.menu .menu-logo img {
+  .menu .menu-logo img {
     width: 100px; }
-  header.menu nav ul {
+  .menu .menu-nav .menu-nav-list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex; }
-    header.menu nav ul .header-user {
-      margin-left: 35px; }
-      header.menu nav ul .header-user img {
+    .menu .menu-nav .menu-nav-list .menu-user {
+      margin-left: 35px;
+      position: relative;
+      display: flex; }
+      .menu .menu-nav .menu-nav-list .menu-user img {
         width: 45px;
         height: 45px;
         margin-right: 5px; }
-      header.menu nav ul .header-user span {
+      .menu .menu-nav .menu-nav-list .menu-user span {
         font-weight: bold;
         font-size: 15px; }
-    header.menu nav ul li {
+      .menu .menu-nav .menu-nav-list .menu-user .header-user-options {
+        display: none;
+        width: 150px;
+        height: auto;
+        overflow: hidden;
+        position: absolute;
+        top: 45px;
+        right: 7px;
+        border-radius: 6px;
+        padding: 20px 0;
+        border: 1px solid #e7ecf4;
+        margin-top: 10px;
+        text-align: center;
+        background: #e7ecf4; }
+        .menu .menu-nav .menu-nav-list .menu-user .header-user-options a, .menu .menu-nav .menu-nav-list .menu-user .header-user-options a:hover, .menu .menu-nav .menu-nav-list .menu-user .header-user-options a:active {
+          text-decoration: none !important; }
+        .menu .menu-nav .menu-nav-list .menu-user .header-user-options .header-user-options-list {
+          list-style: none;
+          margin: 0;
+          padding: 0px 0; }
+          .menu .menu-nav .menu-nav-list .menu-user .header-user-options .header-user-options-list a {
+            font-size: 15px;
+            font-weight: bold; }
+    .menu .menu-nav .menu-nav-list .menu-nav-list-item {
       display: flex;
       align-items: center;
       padding-right: 10px; }
-      header.menu nav ul li a i:hover {
+      .menu .menu-nav .menu-nav-list .menu-nav-list-item a i:hover {
         text-decoration: none;
         color: #4c81ee; }
-      header.menu nav ul li a:hover {
+      .menu .menu-nav .menu-nav-list .menu-nav-list-item a:hover {
         text-decoration: none;
         color: #4c81ee; }
-      header.menu nav ul li a {
+      .menu .menu-nav .menu-nav-list .menu-nav-list-item a {
         color: #5b6775;
         font-size: 19px;
         font-weight: lighter; }
-        header.menu nav ul li a i {
+        .menu .menu-nav .menu-nav-list .menu-nav-list-item a i {
           font-weight: normal !important;
           padding-right: 3px;
           font-size: 28px !important;

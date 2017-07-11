@@ -44,18 +44,23 @@ main{
 	-o-transition: all 0.25s ease-in-out;
 	transition: all 0.25s ease-in-out;
 }
+
+a:hover, button:hover, a:active {
+	text-decoration: none !important;
+}
+
 .logo-font{
 	font-family: 'Leckerli One', cursive!important;
 }
 .bg-actions{
 	width: 100%;
 	height: 100vh;
-	background-image:linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%);
+	background-image:linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
 	opacity: 0.75;
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 300000;
+	z-index: 5;
 	display: none;
 }
 
@@ -289,8 +294,8 @@ main{
 	left: 0;
 	top: 0;
 	margin: auto;
-	width: 450px;
-	height: 50vh;
+	width: 500px;
+	height:42vh;
 	background: $white;
 	z-index: 500000000;
 	display: none;
@@ -299,6 +304,16 @@ main{
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 	border-radius: 6px;
 	
+	.post-form-header{
+		margin-bottom: 15px;
+
+		.userPP{
+			width: 45px;
+			height: 45px;
+			margin-right: 10px;
+		}
+	}
+
 	form{
 		width: 100%;
 		padding: 0;
@@ -308,13 +323,15 @@ main{
 			outline: none;
 			border:2px solid $accent;
 			border-radius:6px;
-			height: 55px;
+			height: 50px;
 			background: transparent;
 			box-sizing:border-box;
 			color: $main;
-			font-size: 18px;
+			font-size: 16px;
 			font-weight: lighter;
 			padding-left: 20px;
+			display: block;
+			margin-bottom: 15px;
 		}
 
 		input[type="text"]::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -328,6 +345,21 @@ main{
 		}
 		input[type="text"]:-moz-placeholder { /* Firefox 18- */
 		  color: $main;
+		}
+
+		.post-form-image{
+			margin-bottom: 25px;
+
+			input{
+				font-size: 14px;
+				background: $white;
+			}
+
+			i{
+				color: $accent;
+				font-size: 32px;
+				padding-right: 5px;
+			}
 		}
 		
 
@@ -591,7 +623,7 @@ main{
 	HEADER MENU
 //////////////////////////////////////
 */
-header.menu{
+.menu{
 	width: 100%;
 	height: 85px;
 	display: flex;
@@ -603,7 +635,6 @@ header.menu{
 	top: 0;
 	left: 0;
 	z-index: 1;
-	border-bottom: 2px solid $grey;
 	//box-shadow: 0 10px 20px 0 #dfe6f4;
 
 	.menu-left{
@@ -656,16 +687,18 @@ header.menu{
 		}
 	}
 
-	nav{
+	.menu-nav{
 
-		ul{
+		.menu-nav-list{
 			list-style: none;
 			margin:0;
 			padding: 0;
 			display: flex;
 
-			.header-user{
+			.menu-user{
 				margin-left: 35px;
+				position: relative;
+				display: flex;
 
 				img{
 					width: 45px;
@@ -677,10 +710,45 @@ header.menu{
 					font-weight: bold;
 					font-size: 15px;
 				}
+
+
+
+				.header-user-options{
+					display: none;
+					width: 150px;
+					height: auto;
+					overflow: hidden;
+					position: absolute;
+					top: 45px;
+					right: 7px;
+					border-radius: 6px;
+					padding: 20px 0;
+					border:1px solid $grey;
+					margin-top: 10px;
+					text-align: center;
+					background: $grey;
+
+					a, a:hover, a:active{
+						text-decoration: none !important;
+					}
+
+
+
+					.header-user-options-list{
+						list-style: none;
+						margin:0;
+						padding: 0px 0;
+
+						a{
+							font-size: 15px;
+							font-weight: bold;
+						}
+					}
+				}
 				
 			}
 
-			li{
+			.menu-nav-list-item{
 				display: flex;
 				align-items:center;
 				padding-right: 10px;

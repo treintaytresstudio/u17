@@ -1,4 +1,8 @@
 $("document").ready(function(){    
+    
+    $(".menu-user").click(function(){
+        $(".header-user-options").toggle();
+    })
 
     //Verificamos si el usuario está conectado
 	firebase.auth().onAuthStateChanged(function(user) {
@@ -233,6 +237,8 @@ $("document").ready(function(){
 	  }
 
 	});
+
+    
 
 
 
