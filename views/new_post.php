@@ -1,5 +1,5 @@
 <!-- formulario para crear un nuevo post -->
-<div class="post-form" id="post-form-container">
+<div class="post-form animated zoomInUp" id="post-form-container">
     <div class="flex-uses post-form-header">
         <img class="userPP avatar" src="" alt="">
         <h4>New post</h4>

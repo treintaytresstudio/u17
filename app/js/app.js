@@ -1,4 +1,3 @@
-
 //Traer todos los posts globales y escuchar cuando se agrega uno nuevo
 function getGlobalPosts(){
     var rootRef = firebase.database().ref().child("posts/");
@@ -57,7 +56,7 @@ function getGlobalPosts(){
                 </div>
 
                 <div class="post-content-caption">
-                    <p>
+                    <p class="post-content-caption-p">
                         ${post_caption}
                     </p>
                 </div>
@@ -174,113 +173,6 @@ function listenGlobalPosts(uid){
 }
 
 
-//Traer el feed del usuario
-function getUserPosts(uid){
-    var rootRef = firebase.database().ref().child("user_feed/"+uid+"/posts");
-    rootRef.on("child_added", snap =>{
-
-    var post_id = snap.key;
-    var post_caption = snap.child("post_caption").val();
-    var post_user_name = snap.child("post_user_name").val();
-    var post_user_profile_picture = snap.child("post_user_profile_picture").val();
-    var post_image = snap.child("post_image").val();
-
-
-    var html = `
-        <!-- post -->
-        <div class="post" id="${post_id}">
-            <div class="post-img" style="background: url(${post_image});"></div>
-            <div class="post-content">
-                <div class="post-content-top">
-                    <div class="post-content-pp">
-                        <img src="${post_user_profile_picture}" class="avatar" alt="">
-                    </div>
-                    <div class="post-content-name-time">
-                        <span>${post_user_name}</span> <br>
-                        <small class="time-post"></small>
-                    </div>
-
-                </div>
-
-                <div class="post-content-caption">
-                    <p>
-                        ${post_caption}
-                    </p>
-                </div>
-
-                <div class="post-content-actions">
-                    <ul>
-                        <li class="like-action">
-                            <i class="material-icons">favorite</i>
-                        </li>
-                        <li>
-                            <i class="material-icons">comment</i>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-        <!-- /post -->  
-           `
-    //Agregamos el evento click para el like, ya que los elementos no existen en el dom
-    $("#posts").append(html);
-    
-    });
-}
-
-
-//Escuchar si hay un cambio en los posts del feed del usuario
-function getUserPostsNew(uid){
-    var rootRef = firebase.database().ref().child("user_feed/"+uid+"/posts");
-    rootRef.on("child_changed", snap =>{
-
-    var post_id = snap.key;
-    var post_caption = snap.child("post_caption").val();
-    var post_user_name = snap.child("post_user_name").val();
-    var post_user_profile_picture = snap.child("post_user_profile_picture").val();
-    var post_image = snap.child("post_image").val();
-
-
-
-    var html = `
-          <div class="post-img" style="background: url(${post_image});"></div>
-          <div class="post-content">
-              <div class="post-content-top">
-                  <div class="post-content-pp">
-                      <img src="${post_user_profile_picture}" class="avatar" alt="">
-                  </div>
-                  <div class="post-content-name-time">
-                      <span>${post_user_name}</span> <br>
-                      <small>5 minutes a go</small>
-                  </div>
-
-              </div>
-
-              <div class="post-content-caption">
-                  <p>
-                      ${post_caption}
-                  </p>
-              </div>
-
-              <div class="post-content-actions">
-                  <ul>
-                      <li class="like-action">
-                          <i class="material-icons">favorite</i>
-                      </li>
-                      <li>
-                          <i class="material-icons">comment</i>
-                      </li>
-                  </ul>
-              </div>
-
-          </div> 
-           `
-    $("#"+post_id).html(html);
-    
-    });
-}
-
 //Crear Post con foto
 function uploadPhoto(uid,input,name,photoUrl){
 
@@ -329,61 +221,49 @@ function uploadPhoto(uid,input,name,photoUrl){
         //Ocultamos loader global
         $(".loader-global").css("display","none");
 
-        //Asginamos los valores al post
+        //->Asginamos los valores al post
 
         //Referencia de la imagen
         var urlPhoto = metadata.downloadURLs;
+
         //Caption del post
         var post_caption = $("#post-form-input").val();
 
-         //Creamos el post global
-         db.ref('posts/').push({
-                  post_user_id:uid,
-                  post_user_name: name,
-                  post_user_profile_picture: photoUrl,
-                  post_image: urlPhoto,
-                  post_caption : post_caption,
-                  post_time: time,
-                  post_like_users:''
+        // Datos del post
+        var postData = {
+          post_user_id:uid,
+          post_user_name: name,
+          post_user_profile_picture: photoUrl,
+          post_image: urlPhoto,
+          post_caption : post_caption,
+          post_time: time,
+          post_like_users:''
+        };
 
-              });
+        // Key asignada por firebase
+        var newPostKey = firebase.database().ref().child('posts').push().key;
 
-         //Insertamos el post en el Feed del usuario
-         var user_feed = db.ref().child('user_feed/'+uid).child('posts');
-          user_feed.push({
-                  post_user_id:uid,
-                  post_user_name: name,
-                  post_user_profile_picture: photoUrl,
-                  post_image: urlPhoto,
-                  post_caption : post_caption,
-                  post_time: time,
-                  post_like_users:''
+        // Guardamos el post, simultaneamente
+        var updates = {};
+        updates['/posts/' + newPostKey] = postData;
+        updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+        updates['/user-feed/' + uid + '/' + newPostKey] = postData;
 
-              });
+        //Mandamos llamar a la función para buscar o crear los hashtags del caption
+        hashtagPost(post_caption,uid,newPostKey);
 
-          //Insertamos el post en los post del usuario
-          var user_posts = db.ref().child('user_posts/'+uid).child('posts');
-          user_posts.push({
-                  post_user_id:uid,
-                  post_user_name: name,
-                  post_user_profile_picture: photoUrl,
-                  post_image: urlPhoto,
-                  post_caption : post_caption,
-                  post_time: time,
-                  post_like_users:''
+        //Ejecutamos la acciòn de guardar
+        firebase.database().ref().update(updates);
 
-              });
+        //Reset al formulario
+        $("#post-form").trigger('reset');
+        $("#post-form-container").hide();
 
+        //Volvemos a mostrar el botòn
+        $("#cta-post-btn").css("display","block");
 
-          //Reset al formulario
-          $("#post-form").trigger('reset');
-          $("#post-form-container").hide();
-
-          //Volvemos a mostrar el botòn
-          $("#cta-post-btn").css("display","block");
-
-          //Cerramos BG Actions
-          $(".bg-actions").css("display","none");
+        //Cerramos BG Actions
+        $(".bg-actions").css("display","none");
 
 
         });  
@@ -391,10 +271,63 @@ function uploadPhoto(uid,input,name,photoUrl){
  
 }
 
+//Hashtag captions
+function hashtagPost(post_caption,uid,newPostKey){
+
+  //recibimos el caption del post
+  var caption = post_caption;
+
+  //dividimos el post en un array
+  var caption_split = caption.split(" ");
+
+  //recorremos los items del arreglo
+  for(var hashtag in caption_split) {
+      
+      //Si algun item del arreglo comienza con # entonces tenemos un hashtag, si no, lo ignoramos
+      if (caption_split[hashtag].match("^#")) {
+        console.log('entre de nuevo');
+
+        //Le quitamos el # para poder trabajar con el string
+        hashtag_clean = caption_split[hashtag].replace('#','');
+
+        //Mandamos llamar la función hashtagExist para saber si existe, o no
+        hashtagExist(hashtag_clean,uid,newPostKey);
+        
+      }
+  }
+ 
+}
+
+function hashtagExist(hashtag_clean,uid,newPostKey){
+  //Comprobamos si el hashtag ya existe en la base de datos
+  var hashtag_exist = db.ref().child('hashtags/').orderByChild('hashtag_name')
+  .equalTo(hashtag_clean)
+
+  hashtag_exist.once('value')
+  .then(function(snapshot){
+    //Resultado de la consulta 
+    result = snapshot.numChildren();
+    
+    //Si el resultado de la consulta es igual a 0, entonces el hashtag no existe y lo insertamos en la bd
+    if(result === 0){
+      //Insertamos el hashtag
+      var hashtag_ref = db.ref().child('hashtags/');
+      hashtag_ref.push({
+              hashtag_user_id:uid,
+              hashtag_name:hashtag_clean,
+              hashtag_posts: newPostKey,
+
+          });
+    }
+    //Si el resultado de la consulta es mayor a 0, el hashtag ya existe en la base de datos
+    else{
+      console.log(hashtag_clean+" ya existe en la base de datos");
+    }
+
+  });
 
 
-
-
+}
 
 
 

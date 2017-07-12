@@ -35,7 +35,7 @@ a:hover, button:hover, a:active {
 .bg-actions {
   width: 100%;
   height: 100vh;
-  background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+  background: #5b6775;
   opacity: 0.75;
   position: fixed;
   top: 0;
@@ -501,9 +501,11 @@ a:hover, button:hover, a:active {
     padding: 0;
     display: flex; }
     .menu .menu-nav .menu-nav-list .menu-user {
-      margin-left: 35px;
+      width: 150px;
+      margin-left: 0px;
       position: relative;
-      display: flex; }
+      display: flex;
+      justify-content: flex-end; }
       .menu .menu-nav .menu-nav-list .menu-user img {
         width: 45px;
         height: 45px;
