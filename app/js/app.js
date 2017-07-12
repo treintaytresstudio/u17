@@ -285,7 +285,6 @@ function hashtagPost(post_caption,uid,newPostKey){
       
       //Si algun item del arreglo comienza con # entonces tenemos un hashtag, si no, lo ignoramos
       if (caption_split[hashtag].match("^#")) {
-        console.log('entre de nuevo');
 
         //Le quitamos el # para poder trabajar con el string
         hashtag_clean = caption_split[hashtag].replace('#','');
@@ -310,18 +309,54 @@ function hashtagExist(hashtag_clean,uid,newPostKey){
     
     //Si el resultado de la consulta es igual a 0, entonces el hashtag no existe y lo insertamos en la bd
     if(result === 0){
+
+      // Key asignada por firebase
+      var newHashtagKey = firebase.database().ref().child('hashtags').push().key;
+
       //Insertamos el hashtag
       var hashtag_ref = db.ref().child('hashtags/');
       hashtag_ref.push({
               hashtag_user_id:uid,
               hashtag_name:hashtag_clean,
-              hashtag_posts: newPostKey,
+              hashtag_posts: '',
 
           });
+
+      var hashtag_exist = db.ref().child('hashtags/').orderByChild('hashtag_name')
+      .equalTo(hashtag_clean)
+
+      hashtag_exist.once('value')
+      .then(function(snapshot){
+        resultExist2 = snapshot.val();
+        for(hashtagNoOk in resultExist2){
+
+          id = hashtagNoOk;
+
+          var hashtag_no_ok_insert = db.ref().child('hashtags/'+id).child('hashtag_posts')
+
+          hashtag_no_ok_insert.push({
+                hashtag_posts: newPostKey,
+            });
+        }
+
+      });
+
     }
     //Si el resultado de la consulta es mayor a 0, el hashtag ya existe en la base de datos
     else{
-      console.log(hashtag_clean+" ya existe en la base de datos");
+      
+      resultExist = snapshot.val();
+
+      for(hashtagOk in resultExist){
+
+        id = hashtagOk;
+
+        var hashtag_ok_insert = db.ref().child('hashtags/'+id).child('hashtag_posts')
+
+        hashtag_ok_insert.push({
+              hashtag_posts: newPostKey,
+          });
+      }
     }
 
   });
