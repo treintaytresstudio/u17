@@ -1,5 +1,7 @@
 $("document").ready(function(){    
-    
+
+
+    //menu de usuario
     $(".menu-user").click(function(){
         $(".header-user-options").toggle();
     })

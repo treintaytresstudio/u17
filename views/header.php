@@ -23,6 +23,9 @@
     
     <!-- BG Actions -->
     <div class="bg-actions"></div>
+
+    <!-- loader -->
+    <?php include 'loader.php' ?>
     
     <!-- login -->
     <?php include 'login.php' ?>

@@ -1,5 +1,6 @@
 //Traer todos los posts globales y escuchar cuando se agrega uno nuevo
 function getGlobalPosts(){
+
     var rootRef = firebase.database().ref().child("posts/");
     rootRef.on("child_added", snap =>{
 
@@ -15,7 +16,6 @@ function getGlobalPosts(){
     var post_user_profile_picture = snap.child("post_user_profile_picture").val();
     var post_image = snap.child("post_image").val();
     var likedBy = snap.child("post_like_users").val();
-
 
     //Recorremos el objeto para saber si el usuario activo, ha dado like
     for(user in likedBy){
@@ -56,7 +56,7 @@ function getGlobalPosts(){
                 </div>
 
                 <div class="post-content-caption">
-                    <p class="post-content-caption-p">
+                    <p class="hash">
                         ${post_caption}
                     </p>
                 </div>
@@ -77,11 +77,32 @@ function getGlobalPosts(){
             </div>
         </div>
         <!-- /post -->  
+
            `
-    $("#posts").append(html);
-    
-    });
+Hashtag.setOptions({
+    'template': '<a href="https://twitter.com/hashtag/{#n}">{#}</a>'
+})
+
+  //agregamos el post
+  $("#posts").append(html);
+  
+  //LLamamos el plugin para convertir los hashtags en links
+  Hashtag.replaceTags('.hash');
+
 }
+
+
+
+$(document).on('click', '.choimg', function(e) {
+
+
+Hashtag.setOptions({
+    'template': '<a href="https://twitter.com/hashtag/{#n}">{#}</a>'
+})
+Hashtag.replaceTags('.hash');
+
+});
+
 
 //Escuchar si hay algùn cambio en los posts globales
 function listenGlobalPosts(uid){
@@ -147,7 +168,7 @@ function listenGlobalPosts(uid){
                 </div>
 
                 <div class="post-content-caption">
-                    <p>
+                    <p class="hash">
                         ${post_caption}
                     </p>
                 </div>
@@ -319,21 +340,24 @@ function hashtagExist(hashtag_clean,uid,newPostKey){
               hashtag_user_id:uid,
               hashtag_name:hashtag_clean,
               hashtag_posts: '',
-
           });
 
+      //Una vez que creamos el hashtag, insertamos el post, dentro del hashtag
       var hashtag_exist = db.ref().child('hashtags/').orderByChild('hashtag_name')
       .equalTo(hashtag_clean)
 
       hashtag_exist.once('value')
       .then(function(snapshot){
         resultExist2 = snapshot.val();
+        //Recoremos los valores del objeto
         for(hashtagNoOk in resultExist2){
-
+          //ID asignado por firebase
           id = hashtagNoOk;
 
+          //Ruta al hashtag
           var hashtag_no_ok_insert = db.ref().child('hashtags/'+id).child('hashtag_posts')
 
+          //Insertamos el post, en el nuevo hashtag
           hashtag_no_ok_insert.push({
                 hashtag_posts: newPostKey,
             });
@@ -344,15 +368,18 @@ function hashtagExist(hashtag_clean,uid,newPostKey){
     }
     //Si el resultado de la consulta es mayor a 0, el hashtag ya existe en la base de datos
     else{
-      
+      //Resultado de la consulta
       resultExist = snapshot.val();
 
+      //Recoremos los valores del objeto
       for(hashtagOk in resultExist){
-
+        //ID asignado por firebase
         id = hashtagOk;
 
+        //Ruta al hashtag
         var hashtag_ok_insert = db.ref().child('hashtags/'+id).child('hashtag_posts')
 
+        //Insertamos el post
         hashtag_ok_insert.push({
               hashtag_posts: newPostKey,
           });
@@ -363,6 +390,7 @@ function hashtagExist(hashtag_clean,uid,newPostKey){
 
 
 }
+
 
 
 
