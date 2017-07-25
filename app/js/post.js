@@ -11,7 +11,7 @@ function getPostOpen(postID,uid){
   var uid;
   uid = user.uid;
 
-
+  //Obtenemos los valores del post
   var post_id = snap.key;
   var post_caption = snap.child("post_caption").val();
   var post_user_name = snap.child("post_user_name").val();
@@ -34,9 +34,17 @@ function getPostOpen(postID,uid){
     }
 
   }
+
+  
   
   //Conseguimos el total de likes
   var total_likes = snap.child("post_like_users").numChildren();
+
+  //Obtenemos el total de comentarios
+  getTotalComments(post_id);
+
+  //Obtenemos los comentarios del post
+  getComments(post_id);
 
 
 
@@ -66,15 +74,24 @@ function getPostOpen(postID,uid){
 
               <div class="post-content-actions">
                   <ul>
-                      <li class="like-action flex-uses">
+                      <li class="post-content-actions-item like-action flex-uses">
                           <i class="material-icons like-icon">favorite</i>
-                          <span>${total_likes}Likes</span>
+                          <span>${total_likes}</span>
                       </li>
-                      <li class="like-action flex-uses">
+                      <li class="post-content-actions-item flex-uses">
                           <i class="material-icons">comment</i>
-                          <span>12 Comments</span>
+                          <span id="post_comments_total"></span>
                       </li>
                   </ul>
+              </div>
+
+              <div class="post-content-comments-input flex-uses">
+                <input id="post_comment_input" type="text" placeholder="Write your comment" />
+                <span id="post_comment_send" class="btn-circle btn-accent"><i class="material-icons">done</i></span>
+              </div>
+
+              <div class="post-content-comments">
+                 
               </div>
 
           </div>
@@ -135,13 +152,20 @@ function listenPostOpen(postID,uid){
     //Conseguimos el total de likes
     var total_likes = snap.child("post_like_users").numChildren();
 
+    //Obtenemos el total de comentarios
+    getTotalComments(post_id);
+
+    //Obtenemos los comentarios del post
+    getComments(post_id);
+
 
 
     var html = `
-            <div class="post" id="${post_id}">
-            <a href="post.php?id=${post_id}">
-              <div class="post-img" style="background: url(${post_image});"></div>
-            </a>
+        <!-- post -->
+        <div class="post" id="${post_id}">
+          <a href="post.php?id=${post_id}">
+            <div class="post-img" style="background: url(${post_image});"></div>
+          </a>
             <div class="post-content">
                 <div class="post-content-top">
                     <div class="post-content-pp">
@@ -162,21 +186,37 @@ function listenPostOpen(postID,uid){
 
                 <div class="post-content-actions">
                     <ul>
-                        <li class="like-action flex-uses">
+                        <li class="post-content-actions-item like-action flex-uses">
                             <i class="material-icons like-icon">favorite</i>
-                            <span>${total_likes}Likes</span>
+                            <span>${total_likes}</span>
                         </li>
-                        <li class="like-action flex-uses">
+                        <li class="post-content-actions-item flex-uses">
                             <i class="material-icons">comment</i>
-                            <span>12 Comments</span>
+                            <span id="post_comments_total"></span>
                         </li>
                     </ul>
                 </div>
 
-            </div> 
-          </div>
+                <div class="post-content-comments-input flex-uses">
+                  <input id="post_comment_input" type="text" placeholder="Write your comment" />
+                  <span id="post_comment_send" class="btn-circle btn-accent"><i class="material-icons">done</i></span>
+                </div>
+
+                <div class="post-content-comments">
+                   
+                </div>
+
+            </div>
+        </div>
+        <!-- /post -->  
            `
     $("#"+post_id).html(html);
     
     });
 }
+
+
+
+
+
+

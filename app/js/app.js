@@ -35,6 +35,8 @@ function getGlobalPosts(){
     //Conseguimos el total de likes
     var total_likes = snap.child("post_like_users").numChildren();
 
+    //Conseguimos el total de likes
+    var total_comments = snap.child("post_comments").numChildren();
 
 
     var html = `
@@ -63,13 +65,13 @@ function getGlobalPosts(){
 
                 <div class="post-content-actions">
                     <ul>
-                        <li class="like-action flex-uses">
+                        <li class="post-content-actions-item like-action flex-uses">
                             <i class="material-icons like-icon">favorite</i>
-                            <span>${total_likes}Likes</span>
+                            <span>${total_likes}</span>
                         </li>
-                        <li class="like-action flex-uses">
+                        <li class="post-content-actions-item flex-uses">
                             <i class="material-icons">comment</i>
-                            <span>12 Comments</span>
+                            <span>${total_comments}</span>
                         </li>
                     </ul>
                 </div>
@@ -79,30 +81,13 @@ function getGlobalPosts(){
         <!-- /post -->  
 
            `
-Hashtag.setOptions({
-    'template': '<a href="https://twitter.com/hashtag/{#n}">{#}</a>'
-})
 
-  //agregamos el post
-  $("#posts").append(html);
-  
-  //LLamamos el plugin para convertir los hashtags en links
-  Hashtag.replaceTags('.hash');
-
-}
-
-
-
-$(document).on('click', '.choimg', function(e) {
-
-
-Hashtag.setOptions({
-    'template': '<a href="https://twitter.com/hashtag/{#n}">{#}</a>'
-})
-Hashtag.replaceTags('.hash');
-
+        //agregamos el post
+        $("#posts").append(html);
+        
 });
 
+}
 
 //Escuchar si hay algùn cambio en los posts globales
 function listenGlobalPosts(uid){
@@ -149,6 +134,9 @@ function listenGlobalPosts(uid){
     //Conseguimos el total de likes
     var total_likes = snap.child("post_like_users").numChildren();
 
+    //Conseguimos el total de likes
+    var total_comments = snap.child("post_comments").numChildren();
+
 
 
     var html = `
@@ -175,20 +163,32 @@ function listenGlobalPosts(uid){
 
                 <div class="post-content-actions">
                     <ul>
-                        <li class="like-action flex-uses">
+                        <li class="post-content-actions-item like-action flex-uses">
                             <i class="material-icons like-icon">favorite</i>
-                            <span>${total_likes}Likes</span>
+                            <span>${total_likes}</span>
                         </li>
-                        <li class="like-action flex-uses">
+                        <li class="post-content-actions-item flex-uses">
                             <i class="material-icons">comment</i>
-                            <span>12 Comments</span>
+                            <span>${total_comments}</span>
                         </li>
                     </ul>
                 </div>
 
             </div> 
            `
+    //agregamos el post
     $("#"+post_id).html(html);
+
+
+    var newPost = this.post_caption;
+
+    console.log(newPost);
+
+    $(document).ready(function(){
+      //LLamamos el plugin para convertir los hashtags en links
+      Hashtag.replaceTags('newPost'); 
+    });
+    
     
     });
 }

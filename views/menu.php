@@ -29,10 +29,10 @@
                 </a> 
             </li>
             <li class="menu-user menu-nav-list-item"> 
-                <a href="#">
+                
                     <img class="avatar userPP" src="" alt="">
                     <span class="userNameMenu"></span>
-                </a> 
+                
 
                 <nav class="header-user-options animated fadeIn">
                     <ul class="header-user-options-list">

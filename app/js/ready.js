@@ -1,5 +1,17 @@
-$("document").ready(function(){    
+$("document").ready(function(){  
 
+    setTimeout(
+      function() 
+      {
+        //LLamamos el plugin para convertir los hashtags en links
+          Hashtag.replaceTags('.hash'); 
+      }, 1000);
+
+    //Template de los hashtags
+    Hashtag.setOptions({
+        'template': '<a href="hashtag.php?id={#n}">{#}</a>'
+    })
+    
 
     //menu de usuario
     $(".menu-user").click(function(){
@@ -70,6 +82,18 @@ $("document").ready(function(){
                     e.preventDefault();
                     uploadPhoto(uid);
                 });
+
+                //Mandamos llamar a la función para crear comentario
+                $(document).on('click', '#post_comment_send', function() { 
+                    //ID del post
+                    var post_id = $(this).closest( ".post").attr("id");
+                    //Caption del comentario
+                    var comment_caption = $("#post_comment_input").val();
+
+                    //Llamamos la función
+                    createComment(post_id,name, photoUrl, uid, comment_caption);
+                });
+
 
 
                 //Manejamos los likes del post

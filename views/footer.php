@@ -19,6 +19,7 @@
     <script src="app/js/settings.js"></script>
     <script src="app/js/search.js"></script>
     <script src="app/js/post.js"></script>
+    <script src="app/js/comments.js"></script>
 
 
 </html>
