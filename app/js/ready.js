@@ -155,25 +155,41 @@ $("document").ready(function(){
 
                 //Cerrar Formulario para crear post desde BG Aactions
                 $(".bg-actions").click(function(e){
-                        //Cerramos BG Actions
-                        $(".bg-actions").css("display","none");
-                        
-                        //Cerramos y damos reset al formulario
-                        $("#post-form-container").hide();
-                        $("#post-form").trigger('reset');
+                    //Cerramos BG Actions
+                    $(".bg-actions").css("display","none");
+                    
+                    //Cerramos y damos reset al formulario
+                    $("#post-form-container").hide();
+                    $("#post-form").trigger('reset');
 
-                        //Volvemos a mostrar el botòn
-                        $("#cta-post-btn").css("display","block");
+                    //Volvemos a mostrar el botòn
+                    $("#cta-post-btn").css("display","block");
                 });
+
 
                 //getPost(PostID);
                 var postID = ("getPost: ", $(".getPost").attr('id'));
                 //Mandamos llamar los datos del post
                 if(postID){
-                        getPostOpen(postID,uid);
-                        listenPostOpen(postID,uid);
+                    getPostOpen(postID,uid);
+                    listenPostOpen(postID,uid);
                         
                 }
+
+                //getHashtagID(HashtagID);
+                var hashtagName = ("getHashtagName: ", $(".getHashtagName").attr('id'));
+                //Mandamos llamar los datos del post
+                if(hashtagName){
+                    getHashtagOpen(hashtagName,uid);
+                    //listenHashtagOpen(hashtagName,uid);
+                        
+                }
+
+                //Hashtag Follow
+                var hashtagName = ("getHashtagName: ", $(".getHashtagName").attr('id'));
+                $("#hashtagFollow").click(function(){
+                    hashtagFollow(uid,hashtagName);
+                });
 
 
                 //getProfile(ProfileID);
