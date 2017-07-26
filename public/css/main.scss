@@ -5,14 +5,14 @@ $accentDark : #2396cd;
 $black : #000;
 $white :white;
 $grey : #e7ecf4;
+$light : rgba(223,230,244,.2);
 
 //Importamos las fuentes
 @import url('https://fonts.googleapis.com/css?family=Leckerli+One');
 
 body{
 	overflow-x: hidden; 
-	//background: rgba(223,230,244,.2);
-	background-color: white;
+	background: $light;
 }
 
 main{
@@ -69,6 +69,11 @@ a:hover, button:hover, a:active {
 
 }
 
+.bold{
+	font-weight: bold;
+}
+
+
 .flex-uses{
 	display: flex;
 	align-items:center;
@@ -79,6 +84,9 @@ a:hover, button:hover, a:active {
 .hashtag{
 	font-weight: bold;
 	color: $accent;
+}
+.btn{	
+	cursor: pointer;
 }
 .btn-auth{
 	background: $accent;
@@ -133,6 +141,10 @@ a:hover, button:hover, a:active {
 .btn-accent{
 	background-color: $accent !important;
 	color: $white;
+}
+.btn-accent:hover{
+	background-color: $main !important;
+
 }
 
 .sub-title-space{
@@ -758,6 +770,124 @@ a:hover, button:hover, a:active {
 	z-index: 1;
 	//box-shadow: 0 10px 20px 0 #dfe6f4;
 
+	.menu-notifications{
+		position: relative;
+
+		.menu-notifications-toggle{
+			cursor: pointer;
+		}
+
+		.menu-notifications-alert{
+			background-color: $accent;
+			color: $white;
+			display: none;
+			align-items:center;
+			justify-content:center;
+			position: absolute;
+			top: 0;
+			left: 16px;
+			border-radius:50%;
+			width: 20px;
+			height: 20px;
+
+
+			span{
+				font-size: 11px;
+				font-weight: bold;
+			}
+		}
+
+
+		.notification_list{
+			position: absolute;
+			top: 50px;
+			left: -225px;
+			width: 400px;
+			height: 350px;
+			background-color: $white;
+			list-style: none;
+			margin:0;
+			padding: 0;
+			box-sizing:border-box;
+			overflow-y:scroll !important;
+			box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+			display: none;
+			-webkit-animation-duration: 0.45s !important;
+			 -webkit-animation-delay: 0s !important;
+
+			.not-item{
+				width: 100%;	
+				height: 75px;
+				display: flex;
+				align-items:center;
+				border-bottom:1px solid $light;
+				box-sizing:border-box;
+				padding: 0 10px;
+
+				.not-item-pp{
+					margin-right: 10px;
+					width: 50px;
+				}
+
+				.not-body{
+					width: 250px;
+				}
+
+				.not-image{
+					width: 50px;
+				}
+
+				.not-follower{
+					width: 100%;
+					display: flex;
+					justify-content:space-between;
+					align-items:center;
+
+					.avatar{
+						width: 50px;
+						height: 50px;
+						overflow: hidden;
+					}
+
+					p{
+						font-size: 14px;
+						font-weight: lighter;
+						margin:0;
+						padding: 0;
+					}
+
+					.not-img{
+						width: 50px;
+					}
+				}
+
+				.not-comment{
+					width: 100%;
+					display: flex;
+					justify-content:space-between;
+					align-items:center;
+
+					.avatar{
+						width: 50px;
+						height: 50px;
+						overflow: hidden;
+					}
+
+					p{
+						font-size: 14px;
+						font-weight: lighter;
+						margin:0;
+						padding: 0;
+					}
+
+					.not-img{
+						width: 50px;
+					}
+				}
+			}
+		}
+	}
+
 	.menu-left{
 		display: flex;
 		align-items:center;
@@ -851,6 +981,8 @@ a:hover, button:hover, a:active {
 					margin-top: 10px;
 					text-align: center;
 					background: $grey;
+					-webkit-animation-duration: 0.45s !important;
+					 -webkit-animation-delay: 0s !important;
 
 					a, a:hover, a:active{
 						text-decoration: none !important;
@@ -900,6 +1032,7 @@ a:hover, button:hover, a:active {
 			}
 		}
 	}
+
 }
 
 header.header-profile{
@@ -1319,11 +1452,14 @@ $duration: 1.4s;
 
 	.hashtag-item-image{
 		height: 250px;
+		width: 100%;
 		background-size: cover !important;
 		background-position: center !important;
 		background-color: $grey;
 		display: flex;
 		align-items:flex-end;
+
+
 
 		.hashtag-item-user{
 			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
@@ -1334,6 +1470,7 @@ $duration: 1.4s;
 			padding:10px;
 			width: 100%;
 			color: $white;
+			display: block;
 
 			span{
 				font-weight: bold;

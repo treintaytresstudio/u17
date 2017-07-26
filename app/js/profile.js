@@ -129,7 +129,7 @@ function listenProfile(userProfileID){
 
 
 //Follow function
-function follow(uid,userProfileID){
+function follow(uid,userProfileID,name,photoUrl){
 
         //FOLLOWER
         
@@ -154,6 +154,20 @@ function follow(uid,userProfileID){
                 //Agregamos follower
                 user.push({
                   user_id:uid,
+                });
+
+
+                //Ruta para agregar la notificación
+                var notification = firebase.database().ref().child("users/"+id).child("notifications")
+                var not_body = 'You have a new follower';
+                //Agregamos la notificación
+                notification.push({
+                  not_type:1,
+                  not_body: not_body,
+                  not_pp: photoUrl,
+                  not_user: name,
+                  not_seen:0,
+
                 });
                
         })

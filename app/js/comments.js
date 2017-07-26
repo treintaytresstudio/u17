@@ -9,6 +9,50 @@ function createComment(post_id,name,photoUrl,uid,comment_caption){
 	  comment_user_uid: uid,
 	});
 
+	var post = db.ref().child('posts/'+post_id)
+	post.once('value')
+	.then(function(snapshot){
+		posts = snapshot.val();
+		post_user = posts.post_user_id;
+
+		//Si el dueño del post, está comentando, entonces no hacemos nada
+		if(uid === post_user){
+
+		}
+		//Si el que comenta no es el dueño del post, entonces insertamos la notificación
+		else{
+
+			//Sacamos el id del usuario
+			var user = firebase.database().ref().child("users/")
+			.orderByChild("user_id")
+			.equalTo(post_user)
+
+			user.once('value')
+			.then(function(snapshot){
+				var id_user = snapshot.val()
+
+				for(data in id_user){
+					id = data;
+				}
+
+				//Insertamos la notificación
+				var notification = firebase.database().ref().child("users/"+id).child("notifications")
+				var not_body = 'You have a new comment from';
+				//Agregamos la notificación
+				notification.push({
+				  not_type:2,
+				  not_user: name,
+				  not_pp: photoUrl,
+				  not_body: not_body,
+				  not_seen:0,
+				});
+
+				
+			});	
+		}
+
+	});
+
 }
 
 function getComments(post_id){

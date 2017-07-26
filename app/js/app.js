@@ -182,7 +182,6 @@ function listenGlobalPosts(uid){
 
     var newPost = this.post_caption;
 
-    console.log(newPost);
 
     $(document).ready(function(){
       //LLamamos el plugin para convertir los hashtags en links

@@ -63,25 +63,29 @@ function getHashtagOpen(hashtagName,uid){
                 rootRef3.once('value')
                 .then(function(snapshot){
                   var hashtag_g = snapshot.val();
+                  console.log(hashtag_g);
 
                   //Asignamos los valores al post
                   var caption = hashtag_g.post_caption;
                   var post_photo = hashtag_g.post_image;
                   var post_user_name = hashtag_g.post_user_name;
                   var post_user_photo = hashtag_g.post_user_profile_picture;
+                  var post_user_id = hashtag_g.post_user_id;
 
                   var post_name_short = post_user_name.split(' ')[0];
                   
                 //Insertamos el post
                 var hashtag_html = `
                               <div class="hashtag-item">
+                                <a href="post.php?id=${post_id}">
                                 <div class="hashtag-item-image" style="background:url(${post_photo});">
                                   <div class="hashtag-item-user">
+                                    
                                     <img src="${post_user_photo}" class="avatar hashtag-item-pp"  alt="" />
-                                    <span>${post_name_short}</span>
+                                      <span>${post_name_short}</span>
                                   </div>
-                                  
                                 </div>
+                                </a>
                               </div> 
                             `
                 $(".hashtag-container").append(hashtag_html);

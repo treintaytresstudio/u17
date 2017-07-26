@@ -23,10 +23,18 @@
                     <i class="material-icons">public</i>
                 </a> 
             </li class="menu-nav-list-item">
-            <li class="menu-nav-list-item"> 
-                <a>
+            <li class="menu-nav-list-item menu-notifications"> 
+                <a class="menu-notifications-toggle">
                     <i class="material-icons">notifications</i>
-                </a> 
+                </a>
+
+                <div class="menu-notifications-alert">
+                    <span id="total_notifications"></span>
+                </div>
+
+                <ul id="notification_list" class="notification_list animated fadeIn">
+                    
+                </ul>
             </li>
             <li class="menu-user menu-nav-list-item"> 
                 

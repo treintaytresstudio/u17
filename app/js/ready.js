@@ -11,13 +11,16 @@ $("document").ready(function(){
     Hashtag.setOptions({
         'template': '<a href="hashtag.php?id={#n}">{#}</a>'
     })
-    
 
     //menu de usuario
     $(".menu-user").click(function(){
         $(".header-user-options").toggle();
     })
 
+    $(".menu-notifications-toggle").click(function(){
+        $(".notification_list").toggle();
+    });
+    
     //Verificamos si el usuario está conectado
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
@@ -55,6 +58,10 @@ $("document").ready(function(){
                 
                 //Mostramos el botòn para crear publicación
                 $(".cta-post").css("display", "block");
+
+                //Notificaciones
+                getNotifications(uid);
+                //listenNotifications(uid);
 
                 //Feed del usuario
                 getGlobalPosts();
@@ -209,7 +216,7 @@ $("document").ready(function(){
 
                 //Mandamos llamar la funcòn de follow
                 $("#followBtn").click(function(){
-                    follow(uid,userProfileID);
+                    follow(uid,userProfileID,name,photoUrl);
                 });
 
                 //Mandamos llamar la función unfollow

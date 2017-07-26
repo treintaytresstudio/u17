@@ -18,8 +18,8 @@
                         <h2>#<?php echo $hashtagID; ?></h2>
                         <span class="totalPostInHashtag"></span>
                     </div> 
-                    <button class="btn btn-primary btn-large" id="hashtagFollow">Follow</button>
-                    <button class="btn btn-primary btn-large" id="hashtagFollowing">Following</button>
+                    <button class="btn btn-primary btn-large btn-accent" id="hashtagFollow">Follow</button>
+                    <button class="btn btn-primary btn-large btn-accent" id="hashtagFollowing">Following</button>
                 </div>
             </div>
             <!-- /hashtag container -->

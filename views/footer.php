@@ -21,6 +21,7 @@
     <script src="app/js/post.js"></script>
     <script src="app/js/comments.js"></script>
     <script src="app/js/hashtag.js"></script>
+    <script src="app/js/notifications.js"></script>
 
 
 </html>
