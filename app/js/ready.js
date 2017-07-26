@@ -181,7 +181,6 @@ $("document").ready(function(){
                 //Mandamos llamar los datos del post
                 if(hashtagName){
                     getHashtagOpen(hashtagName,uid);
-                    //listenHashtagOpen(hashtagName,uid);
                         
                 }
 
@@ -189,6 +188,12 @@ $("document").ready(function(){
                 var hashtagName = ("getHashtagName: ", $(".getHashtagName").attr('id'));
                 $("#hashtagFollow").click(function(){
                     hashtagFollow(uid,hashtagName);
+                });
+
+                //Hashtag Unfollow
+                var hashtagName = ("getHashtagName: ", $(".getHashtagName").attr('id'));
+                $("#hashtagFollowing").click(function(){
+                    hashtagUnfollow(uid,hashtagName);
                 });
 
 
