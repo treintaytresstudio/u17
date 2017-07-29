@@ -39,6 +39,15 @@ function getGlobalPosts(){
     var total_comments = snap.child("post_comments").numChildren();
 
 
+      var matched = post_caption.match(/(\S*#\[[^\]]+\])|(\S*#\S+)/gi);
+      [].forEach.call(matched, function(m) {
+        var templ = '<a href="hashtag.php?id={#n}">{#}</a>';
+        templ = templ.replace('{#}', m);
+        templ = templ.replace('{#n}', m.slice(1));
+        post_caption = post_caption.replace(m, templ);
+      });
+
+
     var html = `
         <!-- post -->
         <div class="post" id="${post_id}">

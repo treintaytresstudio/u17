@@ -1,16 +1,6 @@
 $("document").ready(function(){  
 
-    setTimeout(
-      function() 
-      {
-        //LLamamos el plugin para convertir los hashtags en links
-          Hashtag.replaceTags('.hash'); 
-      }, 1000);
 
-    //Template de los hashtags
-    Hashtag.setOptions({
-        'template': '<a href="hashtag.php?id={#n}">{#}</a>'
-    })
 
     //menu de usuario
     $(".menu-user").click(function(){
@@ -20,7 +10,7 @@ $("document").ready(function(){
     $(".menu-notifications-toggle").click(function(){
         $(".notification_list").toggle();
     });
-    
+
     //Verificamos si el usuario está conectado
 	firebase.auth().onAuthStateChanged(function(user) {
 	  if (user) {
@@ -66,7 +56,7 @@ $("document").ready(function(){
                 //Feed del usuario
                 getGlobalPosts();
                 listenGlobalPosts();
-
+              
                 //Abrimos formulario para crear post
                 $("#cta-post-btn").click(function(){
                     $(".bg-actions").css("display","block");
