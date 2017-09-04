@@ -1,3 +1,15 @@
+<style>
+  #result {
+   position: absolute;
+   width: 100%;
+   max-width:870px;
+   cursor: pointer;
+   overflow-y: auto;
+   max-height: 400px;
+   box-sizing: border-box;
+   z-index: 1001;
+  }
+</style>
 <!-- header -->
 <!-- si el usuario, está logueado -->
 <header class="menu">
@@ -7,7 +19,8 @@
         </div>
         <div class="menu-search">
             <i class="material-icons">search</i>
-            <input type="search" placeholder="Search">
+            <input type="search" id="search" placeholder="Search">
+             <ul class="list-group" id="result"></ul>
         </div>
     </div>
 
@@ -67,3 +80,10 @@
     </nav>
 </header>
 <!-- /header -->
+
+<!-- search test -->
+
+<!-- /search test -->
+
+
+

@@ -470,9 +470,13 @@ a:hover, button:hover, a:active {
 			.post-content-name-time{
 				margin-left: 10px;
 
-				span{
+				a{
 					font-size: 26px;
 					font-weight: bold;
+					color: $black;
+				}
+				a:hover{
+					color: inherit;
 				}
 
 				small{
@@ -823,6 +827,7 @@ a:hover, button:hover, a:active {
 				border-bottom:1px solid $light;
 				box-sizing:border-box;
 				padding: 0 10px;
+				background: $grey;
 
 				.not-item-pp{
 					margin-right: 10px;
@@ -831,6 +836,17 @@ a:hover, button:hover, a:active {
 
 				.not-body{
 					width: 250px;
+
+					a{
+						font-size: 14px;
+						font-weight: lighter;
+						margin:0;
+						padding: 0;
+						text-decoration: none;
+					}
+					a:hover{
+						color: inherit;
+					}
 				}
 
 				.not-image{
@@ -849,7 +865,7 @@ a:hover, button:hover, a:active {
 						overflow: hidden;
 					}
 
-					p{
+					a{
 						font-size: 14px;
 						font-weight: lighter;
 						margin:0;

@@ -61,7 +61,7 @@ function getProfile(userProfileID,uid){
           //Mostramos el contenedor del perfil
           $("#profileContainer").css("display","block");
           //Agregamos la clase header-profile al header para usar la transparencia
-          $("header").addClass("header-profile");
+          //$("header").addClass("header-profile");
           
           //Esperamos 2 segundos para mostrar el header
           setTimeout(
@@ -69,7 +69,7 @@ function getProfile(userProfileID,uid){
             {
               $("header").show();
 
-            }, 2000);
+            }, 0);
 
           //Asignamos las variables del objeto
           
@@ -167,6 +167,7 @@ function follow(uid,userProfileID,name,photoUrl){
                   not_pp: photoUrl,
                   not_user: name,
                   not_seen:0,
+                  not_user_id: uid,
 
                 });
                

@@ -57,43 +57,10 @@ function getHashtagOpen(hashtagName,uid){
               for(hashtag_data in data){
                 var id = hashtag_data;
                 var post_id= data[hashtag_data].hashtag_posts;
-
-                //Buscamos el post dentro de la base de datos
-                var rootRef3 = firebase.database().ref().child("posts/"+post_id)
-                rootRef3.once('value')
-                .then(function(snapshot){
-                  var hashtag_g = snapshot.val();
-                  console.log(hashtag_g);
-
-                  //Asignamos los valores al post
-                  var caption = hashtag_g.post_caption;
-                  var post_photo = hashtag_g.post_image;
-                  var post_user_name = hashtag_g.post_user_name;
-                  var post_user_photo = hashtag_g.post_user_profile_picture;
-                  var post_user_id = hashtag_g.post_user_id;
-
-                  var post_name_short = post_user_name.split(' ')[0];
-                  
-                //Insertamos el post
-                var hashtag_html = `
-                              <div class="hashtag-item">
-                                <a href="post.php?id=${post_id}">
-                                <div class="hashtag-item-image" style="background:url(${post_photo});">
-                                  <div class="hashtag-item-user">
-                                    
-                                    <img src="${post_user_photo}" class="avatar hashtag-item-pp"  alt="" />
-                                      <span>${post_name_short}</span>
-                                  </div>
-                                </div>
-                                </a>
-                              </div> 
-                            `
-                $(".hashtag-container").append(hashtag_html);
+                console.log(id);
 
 
-
-                });
-
+                printPost(id,post_id);
               }
 
           });
@@ -101,6 +68,44 @@ function getHashtagOpen(hashtagName,uid){
          
   });
 
+}
+
+function printPost(id,post_id){
+  //Buscamos el post dentro de la base de datos
+  var rootRef3 = firebase.database().ref().child("posts/"+post_id)
+  rootRef3.once('value')
+  .then(function(snapshot){
+    var hashtag_g = snapshot.val();
+
+    //Asignamos los valores al post
+    var caption = hashtag_g.post_caption;
+    var post_photo = hashtag_g.post_image;
+    var post_user_name = hashtag_g.post_user_name;
+    var post_user_photo = hashtag_g.post_user_profile_picture;
+    var post_user_id = hashtag_g.post_user_id;
+
+    var post_name_short = post_user_name.split(' ')[0];
+
+    console.log(id);
+    
+  //Insertamos el post
+  var hashtag_html = `
+                <div class="hashtag-item">
+                  <a href="post.php?id=${post_id}">
+                  <div class="hashtag-item-image" style="background:url(${post_photo});">
+                    <div class="hashtag-item-user">
+                      <img src="${post_user_photo}" class="avatar hashtag-item-pp"  alt="" />
+                        <span>${post_name_short}</span>
+                    </div>
+                  </div>
+                  </a>
+                </div> 
+              `
+  $(".hashtag-container").append(hashtag_html);
+
+
+
+  });
 }
 
 

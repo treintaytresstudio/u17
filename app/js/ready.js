@@ -1,5 +1,29 @@
-$("document").ready(function(){  
+$("document").ready(function(){
 
+
+    //Search
+    $.ajaxSetup({ cache: false });
+     $('#search').on('keyup',function(){
+      $("#result").show();
+      $('#result').html('');
+      $('#state').val('');
+      var searchField = $('#search').val();
+      var expression = new RegExp(searchField, "i");
+      $.getJSON('https://ultra-17.firebaseio.com/users.json', function(data) {
+       $.each(data, function(key, value){
+        var id = value.user_id;
+        if (value.user_name.search(expression) != -1 || value.user_user_name.search(expression) != -1)
+        {
+         $('#result').append('<li class="list-group-item link-class"><a href="profile.php?id='+value.user_id+'"><img src="'+value.user_profile_picture+'" height="40" width="40" class="img-thumbnail" /> '+value.user_name+' | <span class="text-muted">'+value.user_user_name+'</span></a></li>');
+        }
+       });   
+      });
+     });
+     
+     $('#search').blur( function() {
+       $("#result").hide();
+     } );
+    //End Search
 
 
     //menu de usuario
@@ -106,17 +130,60 @@ $("document").ready(function(){
 
                             //Resultado de la consulta (ha dado like o no)
                             var user_result = snapshot.numChildren();
-                            //var user = snapshot.val();
-                            console.log(user_result);
-
-
-                            //Si el resultado es igual a 0 , significa que no ha dado like, insertamos el like
+                           
+                            //Si el resultado es igual a 0 , significa que no ha dado like, insertamos el like e insertamos la notificación
                             if(user_result === 0){
                                 
+
                                 var refToPost2 = db.ref().child('posts/'+post_id)
                                 refToPost2.child("post_like_users").push({
                                   like_user:uid,
                                 });
+
+                                //Sacamos el id del usuario
+                                var refToPost3 = db.ref().child('posts/'+post_id);
+                                refToPost3.once('value')
+                                    .then(function(snapshot){
+                                        var data_snap = snapshot.val();
+                                        var post_user_id = snapshot.child("post_user_id").val();
+                                        var post_photo = snapshot.child("post_image").val();
+
+                                        //Sacamos el id de firebase del usuario
+                                        var getUser = db.ref().child('users')
+                                            .orderByChild('user_id')
+                                            .equalTo(post_user_id)
+
+                                            getUser.once('value')
+                                                .then(function(snapshot){
+                                                    
+                                                    var data_snap1 = snapshot.val();
+
+                                                    for(user_data in data_snap1){
+                                                        id_new = user_data;
+
+                                                        //Insertamos la notificación
+                                                        var notification = firebase.database().ref().child("users/"+id_new).child("notifications")
+                                                        var not_body = 'You have a new like from';
+
+
+                                                        //Agregamos la notificación
+                                                        notification.push({
+                                                          not_type:4,
+                                                          not_user: name,
+                                                          not_pp: photoUrl,
+                                                          not_body: not_body,
+                                                          not_seen:0,
+                                                          not_post_photo:post_photo,
+                                                          not_post_id:post_id,
+                                                        });
+                                                        
+                                                    }
+                                                });
+                                        
+
+                                        
+                                        
+                                    })
                               
                             }
                             else{
@@ -221,7 +288,7 @@ $("document").ready(function(){
                 //Si estamos en settings
                 if(userSettings){
                         //Agregamos la clase transparente al  header
-                        $("header").addClass("header-profile");
+                        //$("header").addClass("header-profile");
                         //No mostramos el botòn de post
                         $("#cta-post-btn").css("display","none");
 

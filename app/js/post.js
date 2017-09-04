@@ -15,6 +15,7 @@ function getPostOpen(postID,uid){
   var post_id = snap.key;
   var post_caption = snap.child("post_caption").val();
   var post_user_name = snap.child("post_user_name").val();
+  var post_user_id = snap.child("post_user_id").val();
   var post_user_profile_picture = snap.child("post_user_profile_picture").val();
   var post_image = snap.child("post_image").val();
   var likedBy = snap.child("post_like_users").val();
@@ -57,10 +58,12 @@ function getPostOpen(postID,uid){
           <div class="post-content">
               <div class="post-content-top">
                   <div class="post-content-pp">
-                      <img src="${post_user_profile_picture}" class="avatar" alt="">
+                      <a href="profile.php?id=${post_user_id}">
+                        <img src="${post_user_profile_picture}" class="avatar" alt="">
+                      </a>
                   </div>
                   <div class="post-content-name-time">
-                      <span>${post_user_name}</span> <br>
+                      <a href="profile.php?id=${post_user_id}">${post_user_name}</span> </a> <br>
                       <small class="time-post"></small>
                   </div>
 
@@ -127,6 +130,7 @@ function listenPostOpen(postID,uid){
     var post_id = snap.key;
     var post_caption = snap.child("post_caption").val();
     var post_user_name = snap.child("post_user_name").val();
+    var post_user_id = snap.child("post_user_id").val();
     var post_user_profile_picture = snap.child("post_user_profile_picture").val();
     var post_image = snap.child("post_image").val();
     var likedBy = snap.child("post_like_users").val();
@@ -169,10 +173,12 @@ function listenPostOpen(postID,uid){
             <div class="post-content">
                 <div class="post-content-top">
                     <div class="post-content-pp">
-                        <img src="${post_user_profile_picture}" class="avatar" alt="">
+                        <a href="profile.php?id=${post_user_id}">
+                          <img src="${post_user_profile_picture}" class="avatar" alt="">
+                        </a>
                     </div>
                     <div class="post-content-name-time">
-                        <span>${post_user_name}</span> <br>
+                        <a href="profile.php?id=${post_user_id}">${post_user_name}</span> </a> <br>
                         <small class="time-post"></small>
                     </div>
 

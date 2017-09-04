@@ -2,7 +2,7 @@
 <?php include 'views/header.php' ?> 
 
 
-<div class="fluid-container bg-magic" id="userIsOnSettings">
+<div class="fluid-container" id="userIsOnSettings">
         <div class="container">
 
                 <div class="row">

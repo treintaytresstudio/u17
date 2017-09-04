@@ -346,9 +346,12 @@ a:hover, button:hover, a:active {
         height: 65px; }
       .post .post-content .post-content-top .post-content-name-time {
         margin-left: 10px; }
-        .post .post-content .post-content-top .post-content-name-time span {
+        .post .post-content .post-content-top .post-content-name-time a {
           font-size: 26px;
-          font-weight: bold; }
+          font-weight: bold;
+          color: #000; }
+        .post .post-content .post-content-top .post-content-name-time a:hover {
+          color: inherit; }
         .post .post-content .post-content-top .post-content-name-time small {
           font-size: 14px;
           font-weight: bold;
@@ -589,12 +592,21 @@ a:hover, button:hover, a:active {
         align-items: center;
         border-bottom: 1px solid rgba(223, 230, 244, 0.2);
         box-sizing: border-box;
-        padding: 0 10px; }
+        padding: 0 10px;
+        background: #e7ecf4; }
         .menu .menu-notifications .notification_list .not-item .not-item-pp {
           margin-right: 10px;
           width: 50px; }
         .menu .menu-notifications .notification_list .not-item .not-body {
           width: 250px; }
+          .menu .menu-notifications .notification_list .not-item .not-body a {
+            font-size: 14px;
+            font-weight: lighter;
+            margin: 0;
+            padding: 0;
+            text-decoration: none; }
+          .menu .menu-notifications .notification_list .not-item .not-body a:hover {
+            color: inherit; }
         .menu .menu-notifications .notification_list .not-item .not-image {
           width: 50px; }
         .menu .menu-notifications .notification_list .not-item .not-follower {
@@ -606,7 +618,7 @@ a:hover, button:hover, a:active {
             width: 50px;
             height: 50px;
             overflow: hidden; }
-          .menu .menu-notifications .notification_list .not-item .not-follower p {
+          .menu .menu-notifications .notification_list .not-item .not-follower a {
             font-size: 14px;
             font-weight: lighter;
             margin: 0;

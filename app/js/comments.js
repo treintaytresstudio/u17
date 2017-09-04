@@ -1,6 +1,5 @@
 function createComment(post_id,name,photoUrl,uid,comment_caption){
-	//Referencia a el post solicitado , encargada de decirnos si el usuario ya ha dado like o no
-	
+
 	var refToPost = db.ref().child('posts/'+post_id)
 	refToPost.child("post_comments").push({
 	  comment_user_name:name,
@@ -9,6 +8,7 @@ function createComment(post_id,name,photoUrl,uid,comment_caption){
 	  comment_user_uid: uid,
 	});
 
+	
 	var post = db.ref().child('posts/'+post_id)
 	post.once('value')
 	.then(function(snapshot){
@@ -38,16 +38,30 @@ function createComment(post_id,name,photoUrl,uid,comment_caption){
 				//Insertamos la notificación
 				var notification = firebase.database().ref().child("users/"+id).child("notifications")
 				var not_body = 'You have a new comment from';
-				//Agregamos la notificación
-				notification.push({
-				  not_type:2,
-				  not_user: name,
-				  not_pp: photoUrl,
-				  not_body: not_body,
-				  not_seen:0,
-				});
 
-				
+				//Sacamos los datos del post
+				var postInfo = db.ref().child('posts/'+post_id)
+					postInfo.once('value')
+						.then(function(snapshot){
+							post = snapshot.val();
+							post_photo = post.post_image;
+							post_photo_s = post_photo[0];
+
+							
+
+							//Agregamos la notificación
+							notification.push({
+							  not_type:2,
+							  not_user: name,
+							  not_pp: photoUrl,
+							  not_body: not_body,
+							  not_seen:0,
+							  not_post_photo:post_photo_s,
+							  not_post_id:post_id,
+							});
+
+						});
+
 			});	
 		}
 
